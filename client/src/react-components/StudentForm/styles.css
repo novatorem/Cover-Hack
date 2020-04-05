@@ -1,0 +1,25 @@
+/* Styles for the StudentForm React component */
+
+.student-form {
+  justify-content: center;
+}
+
+.student-form .MuiGrid-root {
+  text-align: center;
+}
+
+.MuiButton-root.student-form__submit-button {
+  background-color: #457474;
+}
+
+.student-form__button-grid {
+  line-height: 5;
+}
+
+.student-form__message--success {
+  color: green;
+}
+
+.student-form__message--error {
+  color: red;
+}

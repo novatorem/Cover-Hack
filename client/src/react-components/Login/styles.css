@@ -1,0 +1,58 @@
+/* Styles for the Login React component */
+
+.center {
+  /* center horizontally and vertically */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login__bg-image {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-image: url("./static/home-books.jpg");
+}
+
+.login__card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  padding: 40px 0 40px 0;
+  width: 300px;
+  background-color: aliceblue;
+}
+
+/* Increase specificity to override component styles */
+.MuiButton-root.login__button {
+  margin-top: 50px;
+  width: 100px;
+  height: 50px;
+}
+
+.MuiButton-root.login__button {
+  border: 3px darkslategrey solid;
+}
+
+.MuiButton-root.login__button:hover {
+  border: 5px darkslategrey solid;
+}
+
+.MuiButton-root.login__button,
+.MuiButton-root.login__button:hover {
+  background-color: white;
+  border-radius: 0;
+}
+
+.login__button .MuiButton-label {
+  /* font-size: 1.5rem; */
+  color: darkslategrey;
+}
+
+.MuiTextField-root.login__input {
+  width: 250px;
+}
+
+.login__input .MuiInput-underline {
+  width: 250px;
+}
