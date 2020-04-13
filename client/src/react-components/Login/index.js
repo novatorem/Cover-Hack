@@ -16,8 +16,8 @@ class Login extends React.Component {
                     <h2>Cover Hack</h2>
 
                     <TextField
-                        name="email"
-                        label="Email"
+                        name="username"
+                        label="Username"
                         className="login__input app__input app__horizontal-center"
                         margin="normal"
                         onChange={e => updateLoginForm(e.target)}

@@ -54,7 +54,9 @@ export const login = () => {
             console.log(error);
         });
 };
+
 export const register = (event) => {
+    console.log("resgitering");
     // Create our request constructor with all the parameters we need
     const request = new Request("/users/register", {
         method: "post",

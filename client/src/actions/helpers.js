@@ -10,7 +10,7 @@ import { setState } from "statezero";
 // - studentList state path is used by the StudentList component
 export const setEmptyState = () => {
     setState("currentUser", null);
-    setState("loginForm", { email: "", password: "" });
+    setState("loginForm", { username: "", password: "" });
     setState("studentForm", { name: "", year: "" });
     setState("studentList", []);
     setState("message", { type: "", body: "" });

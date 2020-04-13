@@ -7,6 +7,12 @@ const mongoose = require('mongoose')
 // Get the URI of the local database, or the one specified on deployment.
 const mongoURI = process.env.MONGODB_URI
 
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true});
+mongoose.connect(
+  mongoURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true
+}).then(() => {
+	console.log('Connected to MongoDB...');
+}).catch(err => {
+	console.log('ERROR:', err.message);
+});
 
 module.exports = { mongoose }  // Export the active connection.
