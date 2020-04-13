@@ -1,0 +1,10 @@
+/* Styles for the StudentList React component */
+
+.MuiTable-root.student-list {
+  margin: auto;
+  width: 350px;
+}
+
+.MuiButton-root.student-list__button {
+  margin-top: 50px;
+}
