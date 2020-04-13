@@ -200,7 +200,7 @@ app.patch("/students/:id", (req, res) => {
 
 /** User routes below **/
 // Set up a POST route to *create* a user of your web app (*not* a student).
-app.post("/users", (req, res) => {
+app.post("/users/register", (req, res) => {
     log(req.body);
 
     // Create a new user

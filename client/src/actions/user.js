@@ -54,6 +54,35 @@ export const login = () => {
             console.log(error);
         });
 };
+export const register = (event) => {
+    // Create our request constructor with all the parameters we need
+    const request = new Request("/users/register", {
+        method: "post",
+        body: JSON.stringify(getState("loginForm")),
+        headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json"
+        }
+    });
+  
+    // Send the request with fetch()
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            if (json !== undefined) {
+                alert("Registered!")
+            } else {
+                alert("Username already taken.")
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
 
 export const logout = () => {
     const url = "/users/logout";

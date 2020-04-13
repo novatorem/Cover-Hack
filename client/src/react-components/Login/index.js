@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
 // Importing actions/required methods
-import { updateLoginForm, login } from "../../actions/user";
+import { updateLoginForm, login, register } from "../../actions/user";
 
 import "./../../App.css";
 import "./styles.css";
@@ -13,7 +13,7 @@ class Login extends React.Component {
         return (
             <div className="login__bg-image center">
                 <div className="login__card center">
-                    <h2>Student API</h2>
+                    <h2>Cover Hack</h2>
 
                     <TextField
                         name="email"
@@ -37,6 +37,12 @@ class Login extends React.Component {
                         onClick={login}
                     >
                         Log In
+                    </Button>
+                    <Button
+                        className="login__button app__horizontal-center"
+                        onClick={register}
+                    >
+                        Register
                     </Button>
                 </div>
             </div>
