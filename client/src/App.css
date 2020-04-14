@@ -6,8 +6,9 @@ html {
 }
 
 body {
-  color: darkslategrey;
-  background-color: white;
+  color: #e7e8eb;
+  text-align: center;
+  background-color: #e7e8eb;
   margin: 40px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -24,12 +25,20 @@ p {
 }
 
 .app__input .MuiInput-underline:after {
-  border-color: darkslategray;
+  border-color: #e7e8eb;
+}
+
+.MuiInputBase-input {
+  color: #e7e8eb;
+}
+
+.MuiInput-input {
+  color: #e7e8eb;
 }
 
 .app__input .MuiFormLabel-root,
 .app__input .MuiFormLabel-root.Mui-focused {
-  color: darkslategray;
+  color: #e7e8eb;
 }
 
 .MuiTextField-root.app__horizontal-center,
