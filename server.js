@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 const session = require("express-session");
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/*** Session handling **************************************/
+/*** User handling **************************************/
 // Create a session cookie
 app.use(
     session({
@@ -77,6 +77,27 @@ app.get("/users/check-session", (req, res) => {
     } else {
         res.status(401).send();
     }
+});
+
+// Set up a POST route to *create* a user
+app.post("/users/register", (req, res) => {
+    log(req.body);
+
+    // Create a new user
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password
+    });
+
+    // Save the user
+    user.save().then(
+        user => {
+            res.send(user);
+        },
+        error => {
+            res.status(400).send(error); // 400 for bad request
+        }
+    );
 });
 
 /*********************************************************/
@@ -198,26 +219,7 @@ app.patch("/students/:id", (req, res) => {
 });
 
 /** User routes below **/
-// Set up a POST route to *create* a user of your web app (*not* a student).
-app.post("/users/register", (req, res) => {
-    log(req.body);
 
-    // Create a new user
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password
-    });
-
-    // Save the user
-    user.save().then(
-        user => {
-            res.send(user);
-        },
-        error => {
-            res.status(400).send(error); // 400 for bad request
-        }
-    );
-});
 
 /*** Webpage routes below **********************************/
 // Serve the build
