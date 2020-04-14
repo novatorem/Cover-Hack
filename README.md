@@ -117,5 +117,15 @@ Statezero makes it simple to read and update the global state in your app withou
 
 ## Deployment
 
-This has been ported over from a heroku build to a glitch build.
-Deployment instructions coming soon.
+### MongoDB Atlas
+1. Create a Project, and cluster (or use the default Project0 Sandbox Cluster
+2. In the left sidebar menu: Make sure under the security section you whitelist 0.0.0.0/0 (or select connect from anywhere)
+3. Under the database access tab make sure you add a user that has read/write access
+4. Grab the connection string for your database and plug in your password
+
+### Glitch
+In ⚩.env, set up the two variables below:
+```
+MONGODB_URI='<connection-string>'
+PORT='3000'
+```
