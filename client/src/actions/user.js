@@ -56,7 +56,6 @@ export const login = () => {
 };
 
 export const register = (event) => {
-    console.log("resgitering");
     // Create our request constructor with all the parameters we need
     const request = new Request("/users/register", {
         method: "post",
@@ -76,9 +75,11 @@ export const register = (event) => {
         })
         .then(json => {
             if (json !== undefined) {
-                alert("Registered!")
+                alert("Registered as " + getState("loginForm").username);
+            } else if (getState("loginForm").password.length < 7) {
+                alert("Password requires a minimum of 6 characters");
             } else {
-                alert("Username already taken.")
+                alert("Registration failed, username " + getState("loginForm").username + " already taken");
             }
         })
         .catch(error => {
