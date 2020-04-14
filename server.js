@@ -95,6 +95,7 @@ app.post("/users/register", (req, res) => {
             res.send(user);
         },
         error => {
+            log(error)
             res.status(400).send(error); // 400 for bad request
         }
     );
@@ -217,9 +218,6 @@ app.patch("/students/:id", (req, res) => {
             res.status(400).send(); // bad request for changing the student.
         });
 });
-
-/** User routes below **/
-
 
 /*** Webpage routes below **********************************/
 // Serve the build

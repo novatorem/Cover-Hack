@@ -1,4 +1,5 @@
 import React from "react";
+import Particles from 'react-particles-js';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
@@ -9,9 +10,11 @@ import "./../../App.css";
 import "./styles.css";
 
 class Login extends React.Component {
+  
     render() {
         return (
             <div className="login__bg-image center">
+            <Particles/>
                 <div className="login__card center">
                     <h2>Cover Hack</h2>
 
@@ -31,19 +34,20 @@ class Login extends React.Component {
                         margin="normal"
                         onChange={e => updateLoginForm(e.target)}
                     />
-
-                    <Button
-                        className="login__button app__horizontal-center"
-                        onClick={login}
-                    >
-                        Log In
-                    </Button>
-                    <Button
-                        className="login__button app__horizontal-center"
-                        onClick={register}
-                    >
-                        Register
-                    </Button>
+                    <div className="login__center">
+                      <Button
+                          className="login__button"
+                          onClick={login}
+                      >
+                          Log In
+                      </Button>
+                      <Button
+                          className="login__button"
+                          onClick={register}
+                      >
+                          Register
+                      </Button>
+                    </div>
                 </div>
             </div>
         );
