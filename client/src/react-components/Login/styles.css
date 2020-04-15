@@ -24,9 +24,15 @@
 .login__card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  padding: 40px 0 40px 0;
+  padding: 65px 0 65px 0;
   width: 300px;
-  background-color: #2D2D2D;
+  background-color: #2D2D2DDE;
+  border-radius: 4px;
+}
+
+#login__h2 {
+  margin-top: -25px;
+  margin-bottom: 25px;
 }
 
 /* Increase specificity to override component styles */
@@ -49,7 +55,7 @@
 
 .MuiButton-root.login__button,
 .MuiButton-root.login__button:hover {
-  background-color: #555a5e;
+  background-color: #00000011;
   border-radius: 0;
 }
 

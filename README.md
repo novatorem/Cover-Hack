@@ -1,8 +1,12 @@
 # Cover Hack
 
-In Progress
+In progress
 
-## Setup
+------------------------------------------
+
+## Development Instructions
+
+### Setup
 
 ```
 # install server dependencies in the root directory
@@ -28,7 +32,7 @@ mongod --dbpath mongo-data
 node server.js
 ```
 
-## Development
+### Development
 
 During development, run the following commands for your app to reflect any changes in the code. Make sure mongo is running on a separate terminal.
 
@@ -46,7 +50,7 @@ node server.js
 
 Alternatively, you can run `npm run-script build-run` in the root directory which runs a script to execute all the above commands. This is a shortcut command defined in [package.json](package.json).
 
-## Directory Structure
+### Directory Structure
 
 ```
 Cover Hack
@@ -76,25 +80,25 @@ Cover Hack
         └── serviceWorker.js
 ```
 
-## React Components
+### React Components
 
 Each React component lives in a separate directory with its own `index.js` and `styles.css`. Import them from parent components as needed.
 
-### Styles
+#### Styles
 
 Unique styles associated with each React component are kept separate. If the same styles are shared between multiple React components, keep them in a top-level, shared CSS file (i.e. App.css) to avoid repeated styles.
 
-### Material UI
+#### Material UI
 
 You can find more components [here](https://material-ui.com/).
 
 Note that you can override the default styles of these components by increasing CSS selector specificity.
 
-### Actions
+#### Actions
 
 To keep your `index.js` files clean and simple, import required methods from an associated action file. Following this structure can help organize your code and keep it manageable.
 
-### Statezero
+#### Statezero
 
 Application state is maintained as a single, immutable, global state graph. See
 [statezero documentation](https://github.com/andornaut/statezero/blob/master/README.md) for more information.
@@ -115,17 +119,19 @@ Steps on using statezero in your app:
 
 Statezero makes it simple to read and update the global state in your app without having to pass around component states.
 
-## Deployment
+### Deployment
 
-### MongoDB Atlas
+#### MongoDB Atlas
 1. Create a Project, and cluster (or use the default Project0 Sandbox Cluster
 2. In the left sidebar menu: Make sure under the security section you whitelist 0.0.0.0/0 (or select connect from anywhere)
 3. Under the database access tab make sure you add a user that has read/write access
 4. Grab the connection string for your database and plug in your password
 
-### Glitch
+#### Glitch
 In ⚩.env, set up the two variables below:
 ```
 MONGODB_URI='<connection-string>'
 PORT='3000'
 ```
+
+When installing modules in glitch, use `pnpm install` instead of `npm`, as it would avoid using up the set amount of disk space.
