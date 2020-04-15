@@ -9,6 +9,7 @@
     "react-dom": "^16.10.2",
     "react-particles-js": "^3.0.3",
     "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.1",
     "react-uid": "^2.2.0",
     "statezero": "^0.5.4"
   },
