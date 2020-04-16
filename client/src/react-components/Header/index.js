@@ -6,6 +6,12 @@ import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
+import InfoIcon from "@material-ui/icons/Info";
+import DescriptionIcon from "@material-ui/icons/Description";
+import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
+
+import { logout } from "../../actions/user";
+
 function TabContainer(props) {
   return (
     <Typography component="div" style={{ padding: 8 * 3 }}>
@@ -22,22 +28,29 @@ const theme = createMuiTheme({
   overrides: {
     MuiTabs: {
       indicator: {
-        backgroundColor: "#FFFFFF"
+        backgroundColor: "#FFFFFF99"
+      }
+    },
+    MuiAppBar: {
+      colorPrimary: {
+        backgroundColor: "#212121"
       }
     },
     MuiTab: {
       root: {
+        backgroundColor: "#00000000",
+        color: "#FFFFFFCD",
         "&:hover": {
           backgroundColor: "#FFFFFF11",
-          color: "#0000FF"
+          color: "#FFFFFF"
         }
       },
       selected: {
-        backgroundColor: "#00FF00",
-        color: "#FF0000",
+        backgroundColor: "#303030",
+        color: "#FFFFFFCD",
         "&:hover": {
-          backgroundColor: "#FF0000",
-          color: "#FF0000"
+          backgroundColor: "#303030",
+          color: "#FFFFFF"
         }
       }
     }
@@ -46,7 +59,7 @@ const theme = createMuiTheme({
 
 class Header extends React.Component {
   state = {
-    value: 0
+    value: 1
   };
 
   handleChange = (event, value) => {
@@ -54,30 +67,29 @@ class Header extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { value } = this.state;
 
     return (
       <MuiThemeProvider theme={theme}>
         <div>
-          <AppBar position="static">
-            <Tabs value={value} onChange={this.handleChange} variant="fullWidth">
-              <Tab label="Item One" />
-              <Tab label="Item Two" />
-              <Tab label="Item Three"/>
+          <AppBar position="static" color="primary">
+            <Tabs
+              value={value}
+              onChange={this.handleChange}
+              variant="fullWidth"
+            >
+              <Tab aria-label="Info" icon={<InfoIcon />} />
+              <Tab aria-label="Home" icon={<DescriptionIcon />} />
+              <Tab aria-label="Exit" icon={<ExitToAppRoundedIcon />} />
             </Tabs>
           </AppBar>
           {value === 0}
           {value === 1}
-          {value === 2 && <TabContainer>Item Three</TabContainer>}
+          {value === 2 && logout()}
         </div>
       </MuiThemeProvider>
     );
   }
 }
-
-Header.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default Header;
