@@ -10,6 +10,7 @@ import "./../../App.css";
 import "./styles.css";
 
 class Login extends React.Component {
+
   render() {
     return (
       <div className="login__bg-image center">
@@ -38,7 +39,7 @@ class Login extends React.Component {
             name="password"
             label="Password"
             type="password"
-            className="login__input app__input app__horizontal-center"
+            className="login__input app__input app__horizontal-center password"
             margin="normal"
             InputProps={{
               style: {
@@ -46,6 +47,11 @@ class Login extends React.Component {
               }
             }}
             onChange={e => updateLoginForm(e.target)}
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                login()
+              }
+            } }
           />
           <div className="login__center">
             <Button className="login__button" onClick={login}>
