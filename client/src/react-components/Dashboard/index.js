@@ -1,6 +1,8 @@
 /*  Full Dashboard component */
 import React from "react";
 
+import "./styles.css";
+
 // Importing components
 import Header from "./../Header";
 import StudentList from "./../StudentList";
@@ -16,19 +18,8 @@ class Dashboard extends React.Component {
         const { history } = this.props;
 
         return (
-            <div className="App">
-                {/* Header component with text props. */}
-                <Header
-                    title="Dashboard"
-                    subtitle="You are logged in."
-                    history={history}
-                />
-
-                {/* The Student Form */}
-                <StudentForm />
-
-                {/* The Student List */}
-                <StudentList />
+            <div className="App center">
+                <Header/>
             </div>
         );
     }

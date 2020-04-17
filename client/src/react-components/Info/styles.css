@@ -1,0 +1,19 @@
+/* Styles for the StudentList React component */
+
+.info__main {
+  height: 100%;
+  display: flex;
+  color: #FFFFFFDE;
+  align-items: center;
+  justify-content: center;
+}
+
+.info {
+  height: 90%;
+  width: 98%;
+  margin-top: -2.5%;
+  display: inline-block;
+  border-radius: 3px;
+  border: 1px solid #FFFFFF33;
+  background-color: #303030FE;
+}

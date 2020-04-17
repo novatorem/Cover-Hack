@@ -37,7 +37,6 @@ export const login = () => {
       "Content-Type": "application/json"
     }
   });
-
   // Send the request with fetch()
   fetch(request)
     .then(res => {
@@ -78,13 +77,14 @@ export const register = event => {
     .then(json => {
       if (json !== undefined) {
         alert("Registered as " + getState("loginForm").username);
-      } else if (getState("loginForm").password.length < 7) {
+        login();
+      } else if (getState("loginForm").password.length < 6) {
         alert("Password requires a minimum of 6 characters");
       } else {
         alert(
           "Registration failed, username " +
             getState("loginForm").username +
-            " already taken"
+            " taken"
         );
       }
     })
