@@ -84,7 +84,7 @@ export const register = event => {
         alert(
           "Registration failed, username " +
             getState("loginForm").username +
-            " already taken"
+            " taken"
         );
       }
     })

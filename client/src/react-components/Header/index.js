@@ -10,6 +10,8 @@ import InfoIcon from "@material-ui/icons/Info";
 import DescriptionIcon from "@material-ui/icons/Description";
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
 
+import Info from "../Info";
+import Cover from "../Cover";
 import { logout } from "../../actions/user";
 
 function TabContainer(props) {
@@ -58,35 +60,59 @@ const theme = createMuiTheme({
 });
 
 class Header extends React.Component {
-  state = {
-    value: 1
-  };
+  constructor() {
+    super();
+    this.state = {
+      render: "Cover",
+      value: 1
+    };
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });
   };
+
+  handleClick(compName, e) {
+    console.log(compName);
+    this.setState({ render: compName });
+  }
+
+  _renderSubComp() {
+    switch (this.state.render) {
+      case "Info": {
+        return <Info />;
+      }
+      case "Cover": {
+        return <Cover />;
+      }
+    }
+  }
 
   render() {
     const { value } = this.state;
 
     return (
       <MuiThemeProvider theme={theme}>
-        <div>
-          <AppBar position="static" color="primary">
-            <Tabs
-              value={value}
-              onChange={this.handleChange}
-              variant="fullWidth"
-            >
-              <Tab aria-label="Info" icon={<InfoIcon />} />
-              <Tab aria-label="Home" icon={<DescriptionIcon />} />
-              <Tab aria-label="Exit" icon={<ExitToAppRoundedIcon />} />
-            </Tabs>
-          </AppBar>
-          {value === 0}
-          {value === 1}
-          {value === 2 && logout()}
-        </div>
+        <AppBar position="static" color="primary">
+          <Tabs value={value} onChange={this.handleChange} variant="fullWidth">
+            <Tab
+              aria-label="Info"
+              icon={<InfoIcon />}
+              onClick={this.handleClick.bind(this, "Info")}
+            />
+            <Tab
+              aria-label="Cover"
+              icon={<DescriptionIcon />}
+              onClick={this.handleClick.bind(this, "Cover")}
+            />
+            <Tab aria-label="Exit" icon={<ExitToAppRoundedIcon />} />
+          </Tabs>
+        </AppBar>
+        {value === 0}
+        {value === 1}
+        {value === 2 && logout()}
+
+        {this._renderSubComp()}
       </MuiThemeProvider>
     );
   }

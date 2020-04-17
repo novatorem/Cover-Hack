@@ -32,8 +32,8 @@
 }
 
 #login__h2 {
-  margin-top: -25px;
-  margin-bottom: 25px;
+  margin-top: -30px;
+  margin-bottom: 40px;
 }
 
 /* Increase specificity to override component styles */
@@ -47,23 +47,17 @@
 }
 
 .MuiButton-root.login__button {
-  border: 3px #e7e8eb solid;
-}
-
-.MuiButton-root.login__button:hover {
-  border: 5px #e7e8eb solid;
-}
-
-.MuiButton-root.login__button {
+  margin-top: 60px;
+  margin-bottom: -39px;
+  border: 2px #e7e8eb solid;
   background-color: #00000022;
-  border-radius: 0;
+  border-radius: 2px;
 }
 
 .MuiButton-root.login__button:hover {
+  border: 4px #e7e8eb solid;
   background-color: #FFFFFF11;
-  border-radius: 0;
 }
-
 
 .login__button .MuiButton-label {
   /* font-size: 1.5rem; */
