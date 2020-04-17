@@ -3,13 +3,13 @@ import Particles from "react-particles-js";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import Password from "./password"
 
 // Importing actions/required methods
+import Password from "./password"
 import { updateLoginForm, login, register } from "../../actions/user";
 
-import "./../../App.css";
 import "./styles.css";
+import "./../../App.css";
 
 const theme = createMuiTheme({
   overrides: {

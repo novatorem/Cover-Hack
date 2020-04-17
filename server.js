@@ -39,7 +39,7 @@ app.use(
 
 // A route to login and create a session
 app.post("/users/login", (req, res) => {
-    const username = req.body.username;
+    const username = req.body.username.toLowerCase();
     const password = req.body.password;
 
     log(username, password);
@@ -81,11 +81,9 @@ app.get("/users/check-session", (req, res) => {
 
 // Set up a POST route to *create* a user
 app.post("/users/register", (req, res) => {
-    log(req.body);
-
     // Create a new user
     const user = new User({
-        username: req.body.username,
+        username: req.body.username.toLowerCase(),
         password: req.body.password
     });
 

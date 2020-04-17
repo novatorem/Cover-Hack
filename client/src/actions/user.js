@@ -77,7 +77,8 @@ export const register = event => {
     .then(json => {
       if (json !== undefined) {
         alert("Registered as " + getState("loginForm").username);
-      } else if (getState("loginForm").password.length < 7) {
+        login();
+      } else if (getState("loginForm").password.length < 6) {
         alert("Password requires a minimum of 6 characters");
       } else {
         alert(
