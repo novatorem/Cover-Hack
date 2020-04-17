@@ -37,7 +37,6 @@ export const login = () => {
       "Content-Type": "application/json"
     }
   });
-
   // Send the request with fetch()
   fetch(request)
     .then(res => {

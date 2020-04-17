@@ -53,11 +53,16 @@
   border: 5px #e7e8eb solid;
 }
 
-.MuiButton-root.login__button,
-.MuiButton-root.login__button:hover {
-  background-color: #00000011;
+.MuiButton-root.login__button {
+  background-color: #00000022;
   border-radius: 0;
 }
+
+.MuiButton-root.login__button:hover {
+  background-color: #FFFFFF11;
+  border-radius: 0;
+}
+
 
 .login__button .MuiButton-label {
   /* font-size: 1.5rem; */
