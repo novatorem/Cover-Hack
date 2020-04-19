@@ -4,11 +4,6 @@ Working on:
 
 * Database pathing
 
-Current issue:
-
-* Fix dashboard
-* Database not pushing right `_id`
-
 ------------------------------------------
 
 ## Development Instructions

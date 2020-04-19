@@ -32,7 +32,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      /*expires: 600000,*/
+      expires: new Date(253402300000000),
       httpOnly: true
     }
   })
@@ -106,28 +106,38 @@ app.post("/users/register", (req, res) => {
 
 /** Cover letter resource routes **/
 // a POST request to create a user's cover letter
-app.post("/cover", (req, res) => {
-  log(req.body)
+app.post("/covers", (req, res) => {
+  log(req.body);
+  const coverID = new mongoose.Types.ObjectId().toHexString();
+  
   const cover = new Cover({
+    _id: coverID,
+    title: req.body.title,
     text: req.body.text,
     owner: req.body.owner.toLowerCase()
   });
 
   cover.save().then(
     result => {
-      res.send(result);
+      // Append to list of covers
+      const username = req.body.owner.toLowerCase();
+      User.findOneAndUpdate(
+        { username: username },
+        { $push: { covers: coverID } },
+        { upsert: true }
+      ).then(
+        result => {
+          res.send(result);
+        },
+        error => {
+          res.status(500).send(error);
+        }
+      );
     },
     error => {
       log(error);
       res.status(500).send(error);
     }
-  );
-
-  // Append to list of covers
-  const username = req.body.owner.toLowerCase();
-  User.findOneAndUpdate(
-    { username: username },
-    { $push: { covers: cover._id } }
   );
 });
 

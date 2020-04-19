@@ -2,10 +2,13 @@
 const mongoose = require("mongoose");
 
 const Cover = mongoose.model("Cover", {
-  text: {
+  title: {
     type: String,
     required: true,
-    minlegth: 1
+    minlength: 1
+  },
+  data: {
+    type: Array
   },
   owner: {
     type: String,
