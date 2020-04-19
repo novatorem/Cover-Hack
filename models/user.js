@@ -18,7 +18,10 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		minlength: 6
-	}
+	},
+  covers: {
+    type: [mongoose.Schema.Types.ObjectId]
+  }
 })
 
 // An example of Mongoose middleware.
@@ -62,6 +65,21 @@ UserSchema.statics.findByUsernamePassword = function(username, password) {
 				}
 			})
 		})
+	})
+}
+
+// A static method on the document model.
+// Allows us to find a User document
+UserSchema.statics.findUser = function(username, password) {
+	const User = this // binds this to the User model
+
+	// Find the user by their username
+	return User.findOne({ username: username }).then((user) => {
+		if (!user) {
+			return Promise.reject()  // a rejected promise
+		} else {
+      return Promise.resolve(user)
+    }
 	})
 }
 
