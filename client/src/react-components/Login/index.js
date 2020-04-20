@@ -5,7 +5,9 @@ import TextField from "@material-ui/core/TextField";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 // Importing actions/required methods
-import Password from "./password"
+import Password from "./password";
+import LoginSnackbar from "./snackbar";
+import getState from "statezero";
 import { updateLoginForm, login, register } from "../../actions/user";
 
 import "./styles.css";
@@ -33,7 +35,10 @@ const theme = createMuiTheme({
 });
 
 class Login extends React.Component {
-
+  filterState({ failedLogin }) {
+    return { failedLogin };
+  }
+  
   render() {
     return (
       <MuiThemeProvider theme={theme}>
@@ -55,7 +60,7 @@ class Login extends React.Component {
               }}
               onChange={e => updateLoginForm(e.target)}
             />
-            
+
             <Password />
 
             <div className="login__center">
@@ -67,7 +72,9 @@ class Login extends React.Component {
               </Button>
             </div>
           </div>
+          {/*getState("loginForm") == true && <LoginSnackbar />*/}
         </div>
+        
       </MuiThemeProvider>
     );
   }

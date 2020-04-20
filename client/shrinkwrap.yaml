@@ -1,6 +1,7 @@
 dependencies:
   '@material-ui/core': 4.9.11
   '@material-ui/icons': 4.9.1
+  '@material-ui/lab': 4.0.0-alpha.50
   lodash-es: 4.17.15
   react: 16.13.1
   react-dom: 16.13.1
@@ -1452,6 +1453,23 @@ packages:
       react-dom: ^16.8.0
     resolution:
       integrity: sha512-GBitL3oBWO0hzBhvA9KxqcowRUsA0qzwKkURyC8nppnC3fw54KPKZ+d4V1Eeg/UnDRSzDaI9nGCdel/eh9AQMg==
+  /@material-ui/lab/4.0.0-alpha.50:
+    dependencies:
+      '@babel/runtime': 7.9.2
+      '@material-ui/utils': 4.9.6
+      clsx: 1.1.0
+      prop-types: 15.7.2
+      react-is: 16.13.1
+    dev: false
+    engines:
+      node: '>=8.0.0'
+    peerDependencies:
+      '@material-ui/core': ^4.9.10
+      '@types/react': ^16.8.6
+      react: ^16.8.0
+      react-dom: ^16.8.0
+    resolution:
+      integrity: sha512-32ICWUeXmbwYfgDoaV7M9t8I7+3VkVdxM1/7+oxQIRQ9KRlXNZ5Qept46ofyMOKRwx6SwXCYKwO7yynLsnoL4Q==
   /@material-ui/react-transition-group/4.2.0:
     dependencies:
       '@babel/runtime': 7.9.2
@@ -11697,6 +11715,7 @@ shrinkwrapVersion: 3
 specifiers:
   '@material-ui/core': ^4.5.1
   '@material-ui/icons': ^4.9.1
+  '@material-ui/lab': ^4.0.0-alpha.50
   lodash-es: ^4.17.15
   react: ^16.10.2
   react-dom: ^16.10.2

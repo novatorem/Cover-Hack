@@ -44,6 +44,7 @@ export const login = () => {
         return res.json();
       } else {
         alert("Invalid username/password combination");
+        setState("failedLogin", true);
       }
     })
     .then(json => {
