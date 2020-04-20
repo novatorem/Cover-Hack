@@ -15,4 +15,7 @@ export const setEmptyState = () => {
     setState("studentList", []);
     setState("message", { type: "", body: "" });
     setState("loginFailed", false);
+    setState("registered", false);
+    setState("passwordShort", false);
+    setState("invalidUsername", false);
 };

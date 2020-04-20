@@ -2,6 +2,7 @@ import React from "react";
 import Particles from "react-particles-js";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import BaseReactComponent from "./../BaseReactComponent";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 // Importing actions/required methods
@@ -34,12 +35,13 @@ const theme = createMuiTheme({
   }
 });
 
-class Login extends React.Component {
-  filterState({ failedLogin }) {
-    return { failedLogin };
+class Login extends BaseReactComponent {
+  filterState({ failedLogin, invalidUsername, passwordShort, registered }) {
+    return { failedLogin, invalidUsername, passwordShort, registered };
   }
   
   render() {
+    const { failedLogin, invalidUsername, passwordShort, registered } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="login__bg-image center">
@@ -72,7 +74,10 @@ class Login extends React.Component {
               </Button>
             </div>
           </div>
-          {/*getState("loginForm") == true && <LoginSnackbar />*/}
+          {failedLogin == true && <LoginSnackbar severity="error" message="Invalid username/password combination"/>}
+          {invalidUsername == true && <LoginSnackbar severity="error" message="Failed to register, choose a different username"/>}
+          {passwordShort == true && <LoginSnackbar severity="warning" message="Password too short, minimum of 6 characters"/>}
+          {registered == true && <LoginSnackbar severity="success" message="Registered, welcome!"/>}
         </div>
         
       </MuiThemeProvider>

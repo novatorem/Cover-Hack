@@ -43,8 +43,10 @@ export const login = () => {
       if (res.status === 200) {
         return res.json();
       } else {
-        alert("Invalid username/password combination");
         setState("failedLogin", true);
+        setTimeout(function() { 
+          setState("failedLogin", false);
+        }, 3250);
       }
     })
     .then(json => {
@@ -77,16 +79,27 @@ export const register = event => {
     })
     .then(json => {
       if (json !== undefined) {
-        alert("Registered as " + getState("loginForm").username);
+        // Successful registration
+        setState("registered", true);
+        setTimeout(function() { 
+          setState("registered", false);
+        }, 3250);
+        
         login();
+        
       } else if (getState("loginForm").password.length < 6) {
-        alert("Password requires a minimum of 6 characters");
+        // Short password
+        setState("passwordShort", true);
+        setTimeout(function() { 
+          setState("passwordShort", false);
+        }, 3250);
+        
       } else {
-        alert(
-          "Registration failed, username " +
-            getState("loginForm").username +
-            " taken"
-        );
+        // Invalid username
+        setState("invalidUsername", true);
+        setTimeout(function() { 
+          setState("invalidUsername", false);
+        }, 3250);
       }
     })
     .catch(error => {
