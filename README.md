@@ -1,6 +1,8 @@
 # Cover Hack
 
-In progress
+Working on:
+
+* Database pathing
 
 ------------------------------------------
 

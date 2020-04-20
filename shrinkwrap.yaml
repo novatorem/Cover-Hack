@@ -1,4 +1,5 @@
 dependencies:
+  axios: 0.19.2
   bcryptjs: 2.4.3
   body-parser: 1.19.0
   express: 4.17.1
@@ -19,6 +20,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
+  /axios/0.19.2:
+    dependencies:
+      follow-redirects: 1.5.10
+    dev: false
+    resolution:
+      integrity: sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
   /bcryptjs/2.4.3:
     dev: false
     resolution:
@@ -211,6 +218,14 @@ packages:
       node: '>= 0.8'
     resolution:
       integrity: sha512-aAWcW57uxVNrQZqFXjITpW3sIUQmHGG3qSb9mUah9MgMC4NeWhNOlNjXEYq3HjRAvL6arUviZGGJsBg6z0zsWA==
+  /follow-redirects/1.5.10:
+    dependencies:
+      debug: 3.1.0
+    dev: false
+    engines:
+      node: '>=4.0'
+    resolution:
+      integrity: sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   /forwarded/0.1.2:
     dev: false
     engines:
@@ -625,6 +640,7 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  axios: ^0.19.2
   bcryptjs: ^2.4.3
   body-parser: ^1.18.3
   express: ^4.16.4

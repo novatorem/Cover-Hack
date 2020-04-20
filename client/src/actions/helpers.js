@@ -14,4 +14,5 @@ export const setEmptyState = () => {
     setState("studentForm", { name: "", year: "" });
     setState("studentList", []);
     setState("message", { type: "", body: "" });
+    setState("loginFailed", false);
 };
