@@ -36,6 +36,7 @@ const theme = createMuiTheme({
 });
 
 class Login extends BaseReactComponent {
+  // Prepare all the snackbars
   filterState({ failedLogin, invalidUsername, passwordShort, registered }) {
     return { failedLogin, invalidUsername, passwordShort, registered };
   }

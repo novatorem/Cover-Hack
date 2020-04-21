@@ -1,5 +1,9 @@
 import React from "react";
+import Container from "@material-ui/core/Container";
 import BaseReactComponent from "./../BaseReactComponent";
+
+import NewCover from "./new";
+import VerticalTabs from "./tabs";
 
 import "./../../App.css";
 import "./styles.css";
@@ -16,11 +20,10 @@ class Cover extends BaseReactComponent {
 
     return (
       <React.Fragment>
-        <div className="cover__main">
-          <div className="cover">
-            <h1 className="center">tofill</h1>
-          </div>
-        </div>
+        <Container className="cover" maxWidth="xl">
+          <VerticalTabs />
+          <NewCover />
+        </Container>
       </React.Fragment>
     );
   }

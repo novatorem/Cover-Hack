@@ -9,20 +9,20 @@ import StudentList from "./../StudentList";
 import StudentForm from "./../StudentForm";
 
 class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props.history.push("/dashboard");
-    }
+  constructor(props) {
+    super(props);
+    this.props.history.push("/dashboard");
+  }
 
-    render() {
-        const { history } = this.props;
+  render() {
+    const { history } = this.props;
 
-        return (
-            <div className="App center">
-                <Header/>
-            </div>
-        );
-    }
+    return (
+      <div className="App center">
+        <Header />
+      </div>
+    );
+  }
 }
 
 export default Dashboard;

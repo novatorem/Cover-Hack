@@ -1,19 +1,15 @@
 /* Styles for the StudentList React component */
 
-.cover__main {
-  height: 100%;
-  display: flex;
-  color: #FFFFFFDE;
-  align-items: center;
-  justify-content: center;
+.cover {
+  height: inherit;
+  width: inherit;
+  margin: 10px;
+  border-radius: 3px;
+  background-color: #303030FE;
 }
 
-.cover {
-  height: 90%;
-  width: 98%;
-  margin-top: -2.5%;
-  display: inline-block;
-  border-radius: 3px;
-  border: 1px solid #FFFFFF33;
-  background-color: #303030FE;
+.newCover{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
