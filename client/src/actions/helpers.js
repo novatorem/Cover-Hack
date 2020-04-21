@@ -9,10 +9,18 @@ import { setState } from "statezero";
 // - studentForm and message state paths are used by the StudentForm component
 // - studentList state path is used by the StudentList component
 export const setEmptyState = () => {
-    setState("currentUser", null);
-    setState("loginForm", { username: "", password: "" });
-    setState("studentForm", { name: "", year: "" });
-    setState("studentList", []);
-    setState("message", { type: "", body: "" });
-    setState("loginFailed", false);
+  setState("currentUser", null);
+  setState("loginForm", { username: "", password: "" });
+  setState("studentForm", { name: "", year: "" });
+  setState("studentList", []);
+  setState("message", { type: "", body: "" });
+
+  // Snackbar resources
+  setState("loginFailed", false);
+  setState("registered", false);
+  setState("passwordShort", false);
+  setState("invalidUsername", false);
+  
+  // Cover resources
+  setState("coverTitle", null)
 };

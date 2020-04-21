@@ -106,14 +106,13 @@ app.post("/users/register", (req, res) => {
 
 /** Cover letter resource routes **/
 // a POST request to create a user's cover letter
-app.post("/covers", (req, res) => {
+app.post("/covers/new", (req, res) => {
   log(req.body);
   const coverID = new mongoose.Types.ObjectId().toHexString();
   
   const cover = new Cover({
     _id: coverID,
     title: req.body.title,
-    text: req.body.text,
     owner: req.body.owner.toLowerCase()
   });
 
@@ -127,7 +126,7 @@ app.post("/covers", (req, res) => {
         { upsert: true }
       ).then(
         result => {
-          res.send(result);
+          res.status(200).send(req.body.title + " created!");
         },
         error => {
           res.status(500).send(error);
