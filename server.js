@@ -113,6 +113,7 @@ app.post("/covers/new", (req, res) => {
   const cover = new Cover({
     _id: coverID,
     title: req.body.title,
+    data: [],
     owner: req.body.owner.toLowerCase()
   });
 

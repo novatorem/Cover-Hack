@@ -23,4 +23,6 @@ export const setEmptyState = () => {
   
   // Cover resources
   setState("coverTitle", null)
+  setState("coverShort", false)
+  setState("coverSuccess", false)
 };

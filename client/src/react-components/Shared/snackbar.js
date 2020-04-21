@@ -1,5 +1,5 @@
 import React from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
+import MUISnackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginSnackbar(props) {
+export default function Snackbar(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   
@@ -29,11 +29,11 @@ export default function LoginSnackbar(props) {
 
   return (
     <div className={classes.root}>
-      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+      <MUISnackbar open={open} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={props.severity}>
           {props.message}
         </Alert>
-      </Snackbar>
+      </MUISnackbar>
     </div>
   );
 }

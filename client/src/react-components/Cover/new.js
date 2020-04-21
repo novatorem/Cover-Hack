@@ -73,9 +73,9 @@ export default function NewCover() {
   
   const handleChange = (event) => {
     setName(event.target.value);
-    if (name.length > 11) {
-      alert("too long")
-    }
+    // if (name.length > 11) {
+    //   alert("too long")
+    // }
   };
 
   const handleClickOpen = () => {

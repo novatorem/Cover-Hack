@@ -7,8 +7,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 // Importing actions/required methods
 import Password from "./password";
-import LoginSnackbar from "./snackbar";
-import getState from "statezero";
+import Snackbar from "../Shared/snackbar";
 import { updateLoginForm, login, register } from "../../actions/user";
 
 import "./styles.css";
@@ -75,10 +74,10 @@ class Login extends BaseReactComponent {
               </Button>
             </div>
           </div>
-          {failedLogin == true && <LoginSnackbar severity="error" message="Invalid username/password combination"/>}
-          {invalidUsername == true && <LoginSnackbar severity="error" message="Failed to register, choose a different username"/>}
-          {passwordShort == true && <LoginSnackbar severity="warning" message="Password too short, minimum of 6 characters"/>}
-          {registered == true && <LoginSnackbar severity="success" message="Registered, welcome!"/>}
+          {failedLogin === true && <Snackbar severity="error" message="Invalid username/password combination"/>}
+          {invalidUsername === true && <Snackbar severity="error" message="Failed to register, choose a different username"/>}
+          {passwordShort === true && <Snackbar severity="warning" message="Password too short, minimum of 6 characters"/>}
+          {registered === true && <Snackbar severity="success" message="Registered, welcome!"/>}
         </div>
         
       </MuiThemeProvider>

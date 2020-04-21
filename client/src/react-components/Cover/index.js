@@ -4,19 +4,20 @@ import BaseReactComponent from "./../BaseReactComponent";
 
 import NewCover from "./new";
 import VerticalTabs from "./tabs";
+import Snackbar from "../Shared/snackbar";
 
 import "./../../App.css";
 import "./styles.css";
 
 /* Component for the cover Page */
 class Cover extends BaseReactComponent {
-  filterState({ currentUser }) {
-    return { currentUser };
+  filterState({ coverShort, coverSuccess }) {
+    return { coverShort, coverSuccess };
   }
 
   render() {
     // the filtered states are now on this.state
-    const { currentUser } = this.state;
+    const { coverShort, coverSuccess } = this.state;
 
     return (
       <React.Fragment>
@@ -24,6 +25,10 @@ class Cover extends BaseReactComponent {
           <VerticalTabs />
           <NewCover />
         </Container>
+        
+        {coverShort == true && <Snackbar severity="warning" message="Title length has to be between 1 and 12 characters"/>}
+        {coverSuccess == true && <Snackbar severity="success" message="Succesfully created!"/>}
+        
       </React.Fragment>
     );
   }
