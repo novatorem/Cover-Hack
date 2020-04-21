@@ -1,9 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import Particles from "react-particles-js";
 import Input from "@material-ui/core/Input";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -11,11 +8,8 @@ import Visibility from "@material-ui/icons/Visibility";
 import FormControl from "@material-ui/core/FormControl";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
-import getState from "statezero";
-import Password from "./password";
 import { updateLoginForm, login } from "../../actions/user";
 
 import "./styles.css";
