@@ -12,7 +12,7 @@ const Cover = mongoose.model("Cover", {
     type: Array
   },
   owner: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true
   }
 });

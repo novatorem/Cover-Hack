@@ -1,7 +1,6 @@
 // getState is used to get the value of a state path
 // setState is used to set the value of a state path
 import { getState, setState } from "statezero";
-import { setEmptyState } from "./helpers";
 
 export const newCover = title => {
   const url = "/covers/new";
@@ -19,7 +18,7 @@ export const newCover = title => {
   const request = new Request(url, {
     method: "post",
     body: JSON.stringify({
-      owner: getState("loginForm").username,
+      owner: getState("userID"),
       title: title
     }),
     headers: {
@@ -36,10 +35,34 @@ export const newCover = title => {
         setTimeout(function() {
           setState("coverSuccess", false);
         }, 3250);
+        getUserCovers()
         return res.json();
       }
     })
     .catch(error => {
       console.log(error);
     });
+};
+
+export const getUserCovers = () => {
+    // the URL for the request
+    const url = "/covers/" + getState("userID");
+
+    // Since this is a GET request, simply call fetch on the URL
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                // return a promise that resolves with the JSON body
+                return res.json();
+            } else {
+                alert("Could not get anything");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+            setState("userCovers", json);
+        })
+        .catch(error => {
+            console.log(error);
+        });
 };

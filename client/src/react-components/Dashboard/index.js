@@ -5,8 +5,6 @@ import "./styles.css";
 
 // Importing components
 import Header from "./../Header";
-import StudentList from "./../StudentList";
-import StudentForm from "./../StudentForm";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -15,7 +13,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    const { history } = this.props;
 
     return (
       <div className="App center">

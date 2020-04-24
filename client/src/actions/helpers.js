@@ -11,18 +11,23 @@ import { setState } from "statezero";
 export const setEmptyState = () => {
   setState("currentUser", null);
   setState("loginForm", { username: "", password: "" });
+  setState("userID", null);
+  
   setState("studentForm", { name: "", year: "" });
   setState("studentList", []);
   setState("message", { type: "", body: "" });
 
-  // Snackbar resources
+  // Snackbar login resources
   setState("loginFailed", false);
   setState("registered", false);
   setState("passwordShort", false);
   setState("invalidUsername", false);
   
-  // Cover resources
-  setState("coverTitle", null)
-  setState("coverShort", false)
-  setState("coverSuccess", false)
+  // Snackbar Cover resources
+  setState("coverTitle", null);
+  setState("coverShort", false);
+  setState("coverSuccess", false);
+  
+  // Cover Resources
+  setState("userCovers", null);
 };
