@@ -2,6 +2,7 @@
 // setState is used to set the value of a state path
 import { getState, setState } from "statezero";
 import { setEmptyState } from "./helpers";
+import { getUserCovers } from "./cover";
 
 export const readCookie = () => {
   const url = "/users/check-session";
@@ -15,6 +16,8 @@ export const readCookie = () => {
     .then(json => {
       if (json && json.currentUser) {
         setState("currentUser", json.currentUser);
+        setState("userID", json.userID);
+        getUserCovers();
       }
     })
     .catch(error => {
@@ -44,15 +47,17 @@ export const login = () => {
         return res.json();
       } else {
         setState("failedLogin", true);
-        setTimeout(function() { 
+        setTimeout(function() {
           setState("failedLogin", false);
         }, 3250);
       }
     })
     .then(json => {
       if (json.currentUser !== undefined) {
+        setState("userID", json.userID);
         setState("currentUser", json.currentUser);
-      } 
+        getUserCovers();
+      }
     })
     .catch(error => {
       console.log(error);
@@ -81,23 +86,21 @@ export const register = event => {
       if (json !== undefined) {
         // Successful registration
         setState("registered", true);
-        setTimeout(function() { 
+        setTimeout(function() {
           setState("registered", false);
         }, 3250);
-        
+
         login();
-        
       } else if (getState("loginForm").password.length < 6) {
         // Short password
         setState("passwordShort", true);
-        setTimeout(function() { 
+        setTimeout(function() {
           setState("passwordShort", false);
         }, 3250);
-        
       } else {
         // Invalid username
         setState("invalidUsername", true);
-        setTimeout(function() { 
+        setTimeout(function() {
           setState("invalidUsername", false);
         }, 3250);
       }

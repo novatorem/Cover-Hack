@@ -61,7 +61,7 @@ const theme = createMuiTheme({
           color: "#FFFFFF"
         }
       }
-    },
+    }
   }
 });
 
@@ -70,12 +70,9 @@ export default function NewCover() {
 
   const [open, setOpen] = React.useState(false);
   const [name, setName] = React.useState("");
-  
-  const handleChange = (event) => {
+
+  const handleChange = event => {
     setName(event.target.value);
-    if (name.length > 11) {
-      alert("too long")
-    }
   };
 
   const handleClickOpen = () => {
@@ -85,9 +82,9 @@ export default function NewCover() {
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const handleCreate = () => {
-    newCover(name)
+    newCover(name);
     setOpen(false);
   };
 
@@ -137,7 +134,16 @@ export default function NewCover() {
             <Button onClick={handleClose} color="secondary" fullWidth="true">
               Cancel
             </Button>
-            <Button onClick={handleCreate} color="primary" fullWidth="true">
+            <Button
+              onClick={handleCreate}
+              color="primary"
+              fullWidth="true"
+              onKeyDown={e => {
+                if (e.keyCode === 13) {
+                  handleCreate();
+                }
+              }}
+            >
               Create
             </Button>
           </DialogActions>

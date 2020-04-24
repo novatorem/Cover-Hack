@@ -5,13 +5,14 @@ const Cover = mongoose.model("Cover", {
   title: {
     type: String,
     required: true,
-    minlength: 1
+    minlength: 1,
+    maxlength: 12
   },
   data: {
     type: Array
   },
   owner: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true
   }
 });

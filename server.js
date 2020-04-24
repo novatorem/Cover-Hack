@@ -43,7 +43,6 @@ app.post("/users/login", (req, res) => {
   const username = req.body.username.toLowerCase();
   const password = req.body.password;
 
-  log(username, password);
   // Use the static method on the User model to find a user
   // by their username and password
   User.findByUsernamePassword(username, password)
@@ -52,7 +51,7 @@ app.post("/users/login", (req, res) => {
       // We can check later if this exists to ensure we are logged in.
       req.session.user = user._id;
       req.session.username = user.username;
-      res.send({ currentUser: user.username });
+      res.send({ currentUser: user.username, userID: user._id });
     })
     .catch(error => {
       res.status(400).send();
@@ -74,7 +73,7 @@ app.get("/users/logout", (req, res) => {
 // A route to check if a use is logged in on the session cookie
 app.get("/users/check-session", (req, res) => {
   if (req.session.user) {
-    res.send({ currentUser: req.session.username });
+    res.send({ currentUser: req.session.username, userID: req.session.user });
   } else {
     res.status(401).send();
   }
@@ -109,19 +108,20 @@ app.post("/users/register", (req, res) => {
 app.post("/covers/new", (req, res) => {
   log(req.body);
   const coverID = new mongoose.Types.ObjectId().toHexString();
-  
+
   const cover = new Cover({
     _id: coverID,
     title: req.body.title,
-    owner: req.body.owner.toLowerCase()
+    data: [],
+    owner: req.body.owner
   });
 
   cover.save().then(
     result => {
       // Append to list of covers
-      const username = req.body.owner.toLowerCase();
+      const userID = req.body.owner;
       User.findOneAndUpdate(
-        { username: username },
+        { _id: userID },
         { $push: { covers: coverID } },
         { upsert: true }
       ).then(
@@ -138,6 +138,24 @@ app.post("/covers/new", (req, res) => {
       res.status(500).send(error);
     }
   );
+});
+
+// a GET route to get covers based on user
+app.get("/covers/:id", (req, res) => {
+  const id = req.params.id;
+
+  Cover.find({ owner: id })
+    .then(results => {
+      if (!results) {
+        res.status(404).send("Failed to get covers");
+      } else {
+        res.send(results);
+      }
+    })
+    .catch(error => {
+      log(error);
+      res.status(500).send(error);
+    });
 });
 
 /** Student resource routes **/
