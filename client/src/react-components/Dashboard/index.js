@@ -5,6 +5,7 @@ import "./styles.css";
 
 // Importing components
 import Header from "./../Header";
+import Cover from "./../Cover";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -16,7 +17,8 @@ class Dashboard extends React.Component {
 
     return (
       <div className="App center">
-        <Header />
+        {/*<Header />*/}
+        <Cover/>
       </div>
     );
   }

@@ -2,8 +2,7 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import BaseReactComponent from "./../BaseReactComponent";
 
-import NewCover from "./new";
-import VerticalTabs from "./tabs";
+import VerticalDrawer from "./drawers";
 import Snackbar from "../Shared/snackbar";
 
 import "./../../App.css";
@@ -23,8 +22,7 @@ class Cover extends BaseReactComponent {
     return (
       <React.Fragment>
         <Container className="cover" maxWidth="xl">
-          <VerticalTabs userCovers={userCovers}/>
-          <NewCover />
+          <VerticalDrawer userCovers={userCovers}/>
         </Container>
         
         {coverShort === true && <Snackbar severity="warning" message="Title length has to be between 1 and 12 characters"/>}
