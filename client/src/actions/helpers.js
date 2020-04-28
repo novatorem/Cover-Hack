@@ -30,4 +30,5 @@ export const setEmptyState = () => {
   
   // Cover Resources
   setState("userCovers", null);
+  setState("cover", null);
 };
