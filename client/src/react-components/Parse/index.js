@@ -24,7 +24,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CTextField = (
-  <TextField id="outlined-basic" variant="outlined" size="small" />
+  <TextField
+    id="outlined-basic"
+    variant="outlined"
+    size="small"
+    onChange={e => {
+      console.log(e.target.value)
+    }}
+  />
 );
 
 const CSelect = function(match) {
@@ -36,7 +43,13 @@ const CSelect = function(match) {
   });
   return (
     <FormControl>
-      <Select>{menus}</Select>
+      <Select
+        onChange={e => {
+          console.log(e.target.value);
+        }}
+      >
+        {menus}
+      </Select>
     </FormControl>
   );
 };
@@ -45,7 +58,7 @@ const createSelectors = function(element, index, array) {
   if (typeof element === "object") {
     return element;
   }
-  const listRegx = /{.*\/.*}/g;
+  const listRegx = /{[\w\s-.,;:`"'()]*\/.*?}/g;
   const select = element.split(listRegx);
   let indx = 1;
   let match;
@@ -70,9 +83,20 @@ function getAll(sourceStr) {
   return selectDone;
 }
 
+function formatData(sourceArray) {
+  sourceArray.forEach(source => {
+    if (typeof source[0] !== "string") {
+      console.log(source);
+      console.log(Object.values(source));
+    }
+  });
+}
+
 export default function Parse(props) {
   const classes = useStyles();
   const data = getAll(props.data);
+  formatData(data);
+
   return (
     <div className={classes.root}>
       <ThemeProvider theme={darkTheme}>
