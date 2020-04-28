@@ -5,6 +5,8 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
+import Parse from "../Parse";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -53,8 +55,9 @@ export default function Page(props) {
           <Typography variant="subtitle1" noWrap>
             True
           </Typography>
-          <Paper className={classes.paper}>{value}
-            {/* <Parse data={value} /> */}</Paper>
+          <Paper className={classes.paper}>
+            <Parse data={value} />
+          </Paper>
         </Grid>
       </Grid>
     </div>
