@@ -126,7 +126,7 @@ export default function VerticalDrawer(props) {
         Begin by creating a new cover letter. Then you can create input forms with {'{_}'}.
         Selectors can be created with {'{Developer/Engineer/Researcher}'}.
         
-        Still in progress, I'm surprised you're even reading this!
+        Still in progress.
       </Typography>
     );
   } else {
