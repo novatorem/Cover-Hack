@@ -40,27 +40,30 @@ const CTextField = (
 );
 
 const CSelect = function(match) {
-  inputArr.push("noValue");
-  inputCount++;
-  match = match.substring(1, match.length - 1);
-  const matches = match.split("/");
-  let menus = [];
-  matches.forEach(single => {
-    menus.push(<MenuItem value={single}>{single}</MenuItem>);
-  });
-  return (
-    <FormControl>
-      <Select
-        onChange={e => {
-          inputArr[inputCount] = e.target.value;
-          console.log(inputArr);
-          console.log(inputCount);
-        }}
-      >
-        {menus}
-      </Select>
-    </FormControl>
-  );
+  return (function() {
+    inputArr.push("noValue");
+    inputCount++;
+    let closureCount = inputCount;
+    match = match.substring(1, match.length - 1);
+    const matches = match.split("/");
+    let menus = [];
+    matches.forEach(single => {
+      menus.push(<MenuItem value={single}>{single}</MenuItem>);
+    });
+    return (
+      <FormControl>
+        <Select
+          onChange={e => {
+            inputArr[closureCount] = e.target.value;
+            console.log(inputArr);
+            console.log(inputCount);
+          }}
+        >
+          {menus}
+        </Select>
+      </FormControl>
+    );
+  })();
 };
 
 const createSelectors = function(element, index, array) {
