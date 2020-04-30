@@ -29,7 +29,6 @@ let inputCount = -1;
 
 const CTextField = function() {
   return (function() {
-    inputCount++;
     inputArr.push("");
     let closureCount = inputCount;
     return (
@@ -38,7 +37,8 @@ const CTextField = function() {
         variant="outlined"
         size="small"
         onChange={e => {
-          inputArr[closureCount] = e.target.value;
+          inputArr[closureCount] = e.target.value
+          console.log(e.target.value);
         }}
       />
     );
@@ -47,23 +47,21 @@ const CTextField = function() {
 
 const CSelect = function(match) {
   return (function() {
-    inputCount++;
     inputArr.push("");
+    inputCount++;
     let closureCount = inputCount;
-
     match = match.substring(1, match.length - 1);
     const matches = match.split("/");
     let menus = [];
-
     matches.forEach(single => {
       menus.push(<MenuItem value={single}>{single}</MenuItem>);
     });
-
     return (
       <FormControl>
         <Select
           onChange={e => {
             inputArr[closureCount] = e.target.value;
+            console.log(inputArr);
           }}
         >
           {menus}
@@ -100,7 +98,7 @@ function getAll(sourceStr) {
   // Convert `{_}` to TextField
   const input = sourceStr.split("{_}");
   const inputDone = [...input]
-    .map((e, i) => (i < input.length - 1 ? [e, CTextField()] : [e]))
+    .map((e, i) => (i < input.length - 1 ? [e, CTextField] : [e]))
     .reduce((a, b) => a.concat(b));
 
   // Convert `{.../...}` to Select
@@ -128,9 +126,11 @@ export default function Parse(props) {
         inRaw++;
       }
     });
-    
+
+    console.log(inputArr);
     setRawData(rawList);
-    console.log(rawData.join(""));
+    console.log(rawList);
+    console.log(rawData.join());
   };
 
   return (
