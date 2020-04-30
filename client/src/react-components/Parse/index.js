@@ -26,6 +26,8 @@ const useStyles = makeStyles(theme => ({
 
 let inputArr = [];
 let inputCount = -1;
+let selectArr = []
+let selectCount = -1;
 
 const CTextField = function() {
   return (function() {
@@ -47,9 +49,9 @@ const CTextField = function() {
 
 const CSelect = function(match) {
   return (function() {
-    inputCount++;
-    inputArr.push("");
-    let closureCount = inputCount;
+    selectCount++;
+    selectArr.push("");
+    let closureCount = selectCount;
 
     match = match.substring(1, match.length - 1);
     const matches = match.split("/");
@@ -63,7 +65,7 @@ const CSelect = function(match) {
       <FormControl>
         <Select
           onChange={e => {
-            inputArr[closureCount] = e.target.value;
+            selectArr[closureCount] = e.target.value;
           }}
         >
           {menus}
@@ -94,8 +96,8 @@ const createSelectors = function(element, index, array) {
 };
 
 function getAll(sourceStr) {
-  //inputArr = [];
   inputCount = -1;
+  selectCount = -1;
 
   // Convert `{_}` to TextField
   const input = sourceStr.split("{_}");
@@ -116,21 +118,26 @@ export default function Parse(props) {
 
   const showRaw = () => {
     let inRaw = 0;
+    let slRaw = 0;
     let rawList = [];
 
     inputArr = inputArr.filter(item => item);
+    selectArr = selectArr.filter(item => item);
 
     data.forEach(dataPoint => {
       if (typeof dataPoint === "string") {
         rawList.push(dataPoint);
-      } else {
+      } else if (dataPoint.props.id !== undefined) {
         rawList.push(inputArr[inRaw]);
         inRaw++;
+      } else {
+        rawList.push(selectArr[inRaw]);
+        slRaw++;
       }
     });
-    
+
     setRawData(rawList);
-    console.log(rawData.join(""));
+    console.log(rawList.join(""));
   };
 
   return (
