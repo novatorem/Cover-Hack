@@ -5,6 +5,7 @@ import List from "@material-ui/core/List";
 import Menu from "@material-ui/core/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
+import SaveIcon from '@material-ui/icons/Save';
 import MenuIcon from "@material-ui/icons/Menu";
 import InfoIcon from "@material-ui/icons/Info";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -117,16 +118,19 @@ export default function VerticalDrawer(props) {
   const menuClose = () => {
     setAnchorEl(null);
   };
+  
+  const saveCover = () => {
+    console.log(content)
+  }
 
   let content;
   if (cover === null) {
     // Change to intro info
     content = (
       <Typography paragraph>
-        Begin by creating a new cover letter. Then you can create input forms with {'{_}'}.
-        Selectors can be created with {'{Developer/Engineer/Researcher}'}.
-        
-        Still in progress.
+        Begin by creating a new cover letter. Then you can create input forms
+        with {"{_}"}. Selectors can be created with{" "}
+        {"{Developer/Engineer/Researcher}"}. Still in progress.
       </Typography>
     );
   } else {
@@ -161,6 +165,15 @@ export default function VerticalDrawer(props) {
               aria-label="more"
               aria-controls="long-menu"
               aria-haspopup="true"
+              onClick={saveCover}
+            >
+              <SaveIcon />
+            </IconButton>
+
+            <IconButton
+              aria-label="more"
+              aria-controls="long-menu"
+              aria-haspopup="true"
               onClick={menuOpen}
             >
               <MoreVertIcon />
@@ -172,7 +185,7 @@ export default function VerticalDrawer(props) {
               open={Boolean(anchorEl)}
               onClose={menuClose}
             >
-              <MenuItem onClick={console.log("info")}>
+              <MenuItem onClick={""}>
                 <ListItemIcon>
                   <InfoIcon fontSize="small" />
                 </ListItemIcon>

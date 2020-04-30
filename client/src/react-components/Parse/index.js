@@ -131,7 +131,7 @@ export default function Parse(props) {
         rawList.push(inputArr[inRaw]);
         inRaw++;
       } else {
-        rawList.push(selectArr[inRaw]);
+        rawList.push(selectArr[slRaw]);
         slRaw++;
       }
     });

@@ -9,7 +9,7 @@ const Cover = mongoose.model("Cover", {
     maxlength: 12
   },
   data: {
-    type: Array
+    type: String
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,

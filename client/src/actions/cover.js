@@ -19,7 +19,8 @@ export const newCover = title => {
     method: "post",
     body: JSON.stringify({
       owner: getState("userID"),
-      title: title
+      title: title,
+      data: ""
     }),
     headers: {
       Accept: "application/json, text/plain, */*",
