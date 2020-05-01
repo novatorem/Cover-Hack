@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Parse from "../Parse";
+import { setState } from "statezero";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,10 +26,13 @@ const useStyles = makeStyles(theme => ({
 export default function Page(props) {
   const cover = props.cover;
   const classes = useStyles();
-  const [value, setValue] = React.useState("");
+  const [data, setData] = React.useState(cover.data);
 
   const handleChange = event => {
-    setValue(event.target.value);
+    setData(event.target.value);
+    setTimeout(function() {
+    setState("cover", { id: cover._id, data: data });
+    }, 1500);
   };
 
   return (
@@ -46,7 +50,7 @@ export default function Page(props) {
               rows={33}
               rowsMax={33}
               InputProps={{ disableUnderline: true }}
-              value={value}
+              value={data}
               onChange={handleChange}
             />
           </Paper>
@@ -56,7 +60,7 @@ export default function Page(props) {
             True
           </Typography>
           <Paper className={classes.paper}>
-            <Parse data={value} />
+            <Parse data={data} />
           </Paper>
         </Grid>
       </Grid>

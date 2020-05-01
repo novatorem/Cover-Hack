@@ -27,7 +27,7 @@ export const newCover = title => {
       "Content-Type": "application/json"
     }
   });
-  
+
   // Send the request with fetch()
   fetch(request)
     .then(res => {
@@ -36,7 +36,7 @@ export const newCover = title => {
         setTimeout(function() {
           setState("coverSuccess", false);
         }, 3250);
-        getUserCovers()
+        getUserCovers();
         return res.json();
       }
     })
@@ -46,24 +46,56 @@ export const newCover = title => {
 };
 
 export const getUserCovers = () => {
-    // the URL for the request
-    const url = "/covers/" + getState("userID");
+  // the URL for the request
+  const url = "/covers/" + getState("userID");
 
-    // Since this is a GET request, simply call fetch on the URL
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                // return a promise that resolves with the JSON body
-                return res.json();
-            } else {
-                alert("Could not get anything");
-            }
-        })
-        .then(json => {
-            // the resolved promise with the JSON body
-            setState("userCovers", json);
-        })
-        .catch(error => {
-            console.log(error);
-        });
+  // Since this is a GET request, simply call fetch on the URL
+  fetch(url)
+    .then(res => {
+      if (res.status === 200) {
+        // return a promise that resolves with the JSON body
+        return res.json();
+      } else {
+        alert("Could not get anything");
+      }
+    })
+    .then(json => {
+      // the resolved promise with the JSON body
+      setState("userCovers", json);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+export const saveUserCover = async () => {
+  // Wait 3 seconds to make sure the state is updated
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  const cover = getState("cover");
+  const url = "/covers/" + cover.id;
+  
+  const request = new Request(url, {
+    method: "PATCH",
+    body: JSON.stringify({
+      data: cover.data
+    }),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    }
+  });
+  
+  // Send the request with fetch()
+  fetch(request)
+    .then(res => {
+      if (res.status === 200) {
+        console.log("Saved the cover letter!");
+        return res.json();
+      } else {
+        console.log(res);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
 };

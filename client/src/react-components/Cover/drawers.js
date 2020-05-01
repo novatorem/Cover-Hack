@@ -5,7 +5,7 @@ import List from "@material-ui/core/List";
 import Menu from "@material-ui/core/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
-import SaveIcon from '@material-ui/icons/Save';
+import SaveIcon from "@material-ui/icons/Save";
 import MenuIcon from "@material-ui/icons/Menu";
 import InfoIcon from "@material-ui/icons/Info";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -26,6 +26,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Page from "./page";
 import NewCover from "./new";
 import { logout } from "../../actions/user";
+import { saveUserCover } from "../../actions/cover";
 
 const drawerWidth = 175;
 const darkTheme = createMuiTheme({
@@ -102,6 +103,13 @@ export default function VerticalDrawer(props) {
   const [cover, setCover] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [title, setTitle] = useState("Welcome to Cover Hack!");
+  const [content, setContent] = useState(
+    <Typography paragraph>
+      Begin by creating a new cover letter. Then you can create input forms with{" "}
+      {"{_}"}. Selectors can be created with {"{Developer/Engineer/Researcher}"}
+      . Still in progress.
+    </Typography>
+  );
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -118,24 +126,11 @@ export default function VerticalDrawer(props) {
   const menuClose = () => {
     setAnchorEl(null);
   };
-  
-  const saveCover = () => {
-    console.log(content)
-  }
 
-  let content;
-  if (cover === null) {
-    // Change to intro info
-    content = (
-      <Typography paragraph>
-        Begin by creating a new cover letter. Then you can create input forms
-        with {"{_}"}. Selectors can be created with{" "}
-        {"{Developer/Engineer/Researcher}"}. Still in progress.
-      </Typography>
-    );
-  } else {
-    content = <Page cover={cover} />;
-  }
+  const saveCover = () => {
+    saveUserCover();
+    console.log("attempting to save");
+  };
 
   return (
     <div className={classes.root}>
@@ -226,7 +221,9 @@ export default function VerticalDrawer(props) {
                       button
                       key={userCover.title}
                       onClick={() => (
-                        setTitle(userCover.title), setCover(userCover)
+                        setContent(<Page cover={userCover} />),
+                        setTitle(userCover.title),
+                        setCover(userCover)
                       )}
                     >
                       <ListItemText primary={userCover.title} />
