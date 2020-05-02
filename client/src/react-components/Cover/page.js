@@ -34,9 +34,7 @@ export default function Page(props) {
 
   const handleChange = event => {
     setData(event.target.value);
-    setTimeout(function() {
-      setState("cover", { id: cover._id, data: data });
-    }, 1500);
+    setState("cover", { id: cover._id, data: event.target.value });
   };
 
   return (
