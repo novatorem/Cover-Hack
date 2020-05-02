@@ -112,7 +112,7 @@ app.post("/covers/new", (req, res) => {
   const cover = new Cover({
     _id: coverID,
     title: req.body.title,
-    data: [],
+    data: "",
     owner: req.body.owner
   });
 
@@ -155,6 +155,32 @@ app.get("/covers/:id", (req, res) => {
     .catch(error => {
       log(error);
       res.status(500).send(error);
+    });
+});
+
+// a PATCH route to save cover to a user
+app.patch("/covers/:cid", (req, res) => {
+  const cid = req.params.cid;
+
+  // get the updated name and year only from the request body.
+  const { data } = req.body;
+  const body = { data };
+
+  if (!ObjectID.isValid(cid)) {
+    res.status(404).send();
+  }
+
+  // Update the student by their id.
+  Cover.findByIdAndUpdate(cid, { $set: body }, { new: true })
+    .then(cover => {
+      if (!cover) {
+        res.status(404).send();
+      } else {
+        res.send(cover);
+      }
+    })
+    .catch(error => {
+      res.status(400).send();
     });
 });
 

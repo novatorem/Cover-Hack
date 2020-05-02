@@ -17,7 +17,6 @@ class Dashboard extends React.Component {
 
     return (
       <div className="App center">
-        {/*<Header />*/}
         <Cover/>
       </div>
     );

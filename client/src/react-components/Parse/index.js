@@ -96,9 +96,13 @@ const createSelectors = function(element, index, array) {
 };
 
 function getAll(sourceStr) {
+  if (sourceStr.length < 1) {
+    return [];
+  }
+  
   inputCount = -1;
   selectCount = -1;
-
+  
   // Convert `{_}` to TextField
   const input = sourceStr.split("{_}");
   const inputDone = [...input]
@@ -131,7 +135,7 @@ export default function Parse(props) {
         rawList.push(inputArr[inRaw]);
         inRaw++;
       } else {
-        rawList.push(selectArr[inRaw]);
+        rawList.push(selectArr[slRaw]);
         slRaw++;
       }
     });
