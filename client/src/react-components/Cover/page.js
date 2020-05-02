@@ -24,14 +24,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Page(props) {
-  const cover = props.cover;
+  let cover = props.cover;
   const classes = useStyles();
   const [data, setData] = React.useState(cover.data);
+
+  React.useEffect(() => {
+    setData(cover.data);
+  }, [cover.data]);
 
   const handleChange = event => {
     setData(event.target.value);
     setTimeout(function() {
-    setState("cover", { id: cover._id, data: data });
+      setState("cover", { id: cover._id, data: data });
     }, 1500);
   };
 

@@ -221,9 +221,9 @@ export default function VerticalDrawer(props) {
                       button
                       key={userCover.title}
                       onClick={() => (
-                        setContent(<Page cover={userCover} />),
                         setTitle(userCover.title),
-                        setCover(userCover)
+                        setCover(userCover),
+                        setContent(<Page cover={userCover} />)
                       )}
                     >
                       <ListItemText primary={userCover.title} />
