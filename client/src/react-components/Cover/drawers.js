@@ -25,6 +25,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Page from "./page";
 import NewCover from "./new";
+import { setState } from "statezero";
 import { logout } from "../../actions/user";
 import { saveUserCover } from "../../actions/cover";
 
@@ -37,7 +38,8 @@ const darkTheme = createMuiTheme({
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex"
+    display: "flex",
+    height: "100%"
   },
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
@@ -103,6 +105,7 @@ export default function VerticalDrawer(props) {
   const [cover, setCover] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [title, setTitle] = useState("Welcome to Cover Hack!");
+
   const [content, setContent] = useState(
     <Typography paragraph>
       Begin by creating a new cover letter. Then you can create input forms with{" "}
@@ -117,6 +120,10 @@ export default function VerticalDrawer(props) {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleInfoOpen = () => {
+    setState("info", true);
   };
 
   const menuOpen = event => {
@@ -156,14 +163,17 @@ export default function VerticalDrawer(props) {
               {title}
             </Typography>
 
-            <IconButton
-              aria-label="more"
-              aria-controls="long-menu"
-              aria-haspopup="true"
-              onClick={saveCover}
-            >
-              <SaveIcon />
-            </IconButton>
+            {/* SAVE - if in a cover, show the save button*/}
+            {cover ? (
+              <IconButton
+                aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
+                onClick={saveCover}
+              >
+                <SaveIcon />
+              </IconButton>
+            ) : null}
 
             <IconButton
               aria-label="more"
@@ -180,12 +190,15 @@ export default function VerticalDrawer(props) {
               open={Boolean(anchorEl)}
               onClose={menuClose}
             >
-              <MenuItem onClick={""}>
+              {/* INFO - opens the info dialogue page */}
+              <MenuItem onClick={handleInfoOpen}>
                 <ListItemIcon>
                   <InfoIcon fontSize="small" />
                 </ListItemIcon>
                 <Typography>Info</Typography>
               </MenuItem>
+
+              {/* LOGOUT - Submenu option to log out */}
               <MenuItem onClick={logout}>
                 <ListItemIcon>
                   <ExitToAppRoundedIcon fontSize="small" />

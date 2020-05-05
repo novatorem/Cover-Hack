@@ -6,8 +6,16 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import FileCopyIcon from "@material-ui/icons/FileCopy";
 import FormControl from "@material-ui/core/FormControl";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
+import {
+  createMuiTheme,
+  ThemeProvider,
+  withStyles
+} from "@material-ui/core/styles";
+
+import "./styles.css";
 
 const darkTheme = createMuiTheme({
   palette: {
@@ -15,18 +23,35 @@ const darkTheme = createMuiTheme({
   }
 });
 
-const useStyles = makeStyles(theme => ({
+const MUITextField = withStyles({
+  root: {}
+})(TextField);
+
+const MUIFormControl = withStyles({
   root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch"
-    }
+    marginTop: "-2px",
+    marginBottom: "2px"
   }
-}));
+})(FormControl);
+
+const MUIButton = withStyles(theme => ({
+  root: {
+    position: "absolute",
+    bottom: "1%",
+    right: "1%"
+  }
+}))(Button);
+
+const MUITypography = withStyles({
+  root: {
+    overflow: "auto",
+    marginTop: "15px"
+  }
+})(Typography);
 
 let inputArr = [];
 let inputCount = -1;
-let selectArr = []
+let selectArr = [];
 let selectCount = -1;
 
 const CTextField = function() {
@@ -35,9 +60,8 @@ const CTextField = function() {
     inputArr.push("");
     let closureCount = inputCount;
     return (
-      <TextField
+      <MUITextField
         id="outlined-basic"
-        variant="outlined"
         size="small"
         onChange={e => {
           inputArr[closureCount] = e.target.value;
@@ -62,7 +86,7 @@ const CSelect = function(match) {
     });
 
     return (
-      <FormControl>
+      <MUIFormControl>
         <Select
           onChange={e => {
             selectArr[closureCount] = e.target.value;
@@ -70,7 +94,7 @@ const CSelect = function(match) {
         >
           {menus}
         </Select>
-      </FormControl>
+      </MUIFormControl>
     );
   })();
 };
@@ -99,10 +123,10 @@ function getAll(sourceStr) {
   if (sourceStr.length < 1) {
     return [];
   }
-  
+
   inputCount = -1;
   selectCount = -1;
-  
+
   // Convert `{_}` to TextField
   const input = sourceStr.split("{_}");
   const inputDone = [...input]
@@ -116,9 +140,8 @@ function getAll(sourceStr) {
 }
 
 export default function Parse(props) {
-  const classes = useStyles();
   const data = getAll(props.data).flat();
-  const [rawData, setRawData] = useState([]);
+  //const [rawData, setRawData] = useState([]);
 
   const showRaw = () => {
     let inRaw = 0;
@@ -140,20 +163,22 @@ export default function Parse(props) {
       }
     });
 
-    setRawData(rawList);
+    //setRawData(rawList);
     console.log(rawList.join(""));
+    navigator.clipboard.writeText(rawList.join(""));
   };
 
   return (
-    <div className={classes.root}>
-      <ThemeProvider theme={darkTheme}>
-        <Typography align="left" variant="subtitle2">
-          {data}
-        </Typography>
-        <Button variant="contained" color="primary" onClick={showRaw}>
-          Print Raw to Log
-        </Button>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <MUITypography align="left">{data}</MUITypography>
+      <MUIButton
+        variant="outlined"
+        color="default"
+        onClick={showRaw}
+        startIcon={<FileCopyIcon />}
+      >
+        Copy to clipboard
+      </MUIButton>
+    </ThemeProvider>
   );
 }
