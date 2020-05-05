@@ -70,7 +70,7 @@ export const getUserCovers = () => {
 
 export const saveUserCover = async () => {
   // Wait 3 seconds to make sure the state is updated
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  await new Promise(resolve => setTimeout(resolve, 500));
   const cover = getState("cover");
   const url = "/covers/" + cover.id;
   

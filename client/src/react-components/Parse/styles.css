@@ -1,0 +1,7 @@
+.MuiPaper-root {
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
