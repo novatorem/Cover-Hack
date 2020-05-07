@@ -72,8 +72,8 @@ export const saveUserCover = async () => {
   // Wait 3 seconds to make sure the state is updated
   await new Promise(resolve => setTimeout(resolve, 500));
   const cover = getState("cover");
-  const url = "/covers/" + cover.id;
-  
+  const url = "/covers/" + cover._id;
+
   const request = new Request(url, {
     method: "PATCH",
     body: JSON.stringify({
@@ -84,12 +84,15 @@ export const saveUserCover = async () => {
       "Content-Type": "application/json"
     }
   });
-  
+
   // Send the request with fetch()
   fetch(request)
     .then(res => {
       if (res.status === 200) {
-        console.log("Saved the cover letter!");
+        setState("saveSuccess", true);
+        setTimeout(function() {
+          setState("saveSuccess", false);
+        }, 3250);
         return res.json();
       } else {
         console.log(res);

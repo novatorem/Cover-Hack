@@ -4,7 +4,7 @@ import { getState, subscribe, unsubscribe, stopLogging } from "statezero";
 
 class BaseReactComponent extends React.Component {
   componentWillMount() {
-    //stopLogging();
+    stopLogging();
     const callback = state => {
       this.setState(state);
     };

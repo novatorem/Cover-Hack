@@ -128,6 +128,11 @@ export default function NewCover() {
                   color: "#FFFFFFDE"
                 }
               }}
+              onKeyDown={e => {
+                if (e.keyCode === 13) {
+                  handleCreate();
+                }
+              }}
             />
           </DialogContent>
           <DialogActions>
@@ -138,11 +143,6 @@ export default function NewCover() {
               onClick={handleCreate}
               color="primary"
               fullWidth="true"
-              onKeyDown={e => {
-                if (e.keyCode === 13) {
-                  handleCreate();
-                }
-              }}
             >
               Create
             </Button>

@@ -100,11 +100,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function VerticalDrawer(props) {
+  let selectCount = -1;
   const classes = useStyles();
+
   const [open, setOpen] = useState(true);
   const [cover, setCover] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [title, setTitle] = useState("Welcome to Cover Hack!");
+  const [selectedIndex, setSelectedIndex] = React.useState(null);
 
   const [content, setContent] = useState(
     <Typography paragraph>
@@ -113,6 +116,10 @@ export default function VerticalDrawer(props) {
       . Still in progress.
     </Typography>
   );
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -136,7 +143,7 @@ export default function VerticalDrawer(props) {
 
   const saveCover = () => {
     saveUserCover();
-    console.log("attempting to save");
+    console.log("Saving...");
   };
 
   return (
@@ -227,23 +234,33 @@ export default function VerticalDrawer(props) {
           </div>
           <Divider />
           <List>
+            
+            {/* Drawer List - Populates all the cover letters on the drawer */}
             {props.userCovers
               ? props.userCovers.map(userCover => {
-                  return (
-                    <ListItem
-                      button
-                      key={userCover.title}
-                      onClick={() => (
-                        setTitle(userCover.title),
-                        setCover(userCover),
-                        setContent(<Page cover={userCover} />)
-                      )}
-                    >
-                      <ListItemText primary={userCover.title} />
-                    </ListItem>
-                  );
+                  return (function() {
+                    selectCount++;
+                    let currentDraw = selectCount;
+                    return (
+                      <ListItem
+                        button
+                        selected={selectedIndex === currentDraw}
+                        key={userCover.title}
+                        onClick={event => (
+                          setCover(userCover),
+                          setTitle(userCover.title),
+                          setState("cover", userCover),
+                          setContent(<Page cover={userCover} />),
+                          handleListItemClick(event, currentDraw)
+                        )}
+                      >
+                        <ListItemText primary={userCover.title} />
+                      </ListItem>
+                    );
+                  })();
                 })
               : null}
+            
           </List>
 
           <NewCover />
