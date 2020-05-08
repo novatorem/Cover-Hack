@@ -3,6 +3,9 @@
 Details will be added once I actually get this bad boy up and running!
 For now, dev instructions since this is a nice environment to be working with as a base.
 
+* Allow deleting posts
+* Mobile update?
+
 ------------------------------------------
 
 ## Development Instructions
