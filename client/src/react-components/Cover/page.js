@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
+import { Dimensions } from "react-native";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
@@ -49,6 +50,15 @@ const MUIPaper = withStyles({
   }
 })(Paper);
 
+// Detect if mobile or laptop to orient grid
+let direction = "row";
+if (
+  Math.round(Dimensions.get("window").width) >=
+  Math.round(Dimensions.get("window").height)
+) {
+  direction = "column";
+}
+
 export default function Page(props) {
   const cover = props.cover;
   const classes = useStyles();
@@ -65,7 +75,7 @@ export default function Page(props) {
 
   return (
     <div className={classes.root}>
-      <MUIGrid container alignItems="stretch" spacing={2}>
+      <MUIGrid container alignItems="stretch" spacing={2} direction={direction}>
         <MUIGrid item xs>
           <Paper className={classes.paper}>
             <MUIHeader variant="h6" noWrap>
