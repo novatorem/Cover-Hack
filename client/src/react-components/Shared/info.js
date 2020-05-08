@@ -15,7 +15,7 @@ const darkTheme = createMuiTheme({
   }
 });
 
-export default function FullScreenDialog() {
+export default function FullScreenDialog(props) {
 
   const handleClose = () => {
     setState("info", false);
@@ -26,7 +26,7 @@ export default function FullScreenDialog() {
       <Dialog fullWidth={true} maxWidth="lg" open={true} onClose={handleClose}>
         <DialogTitle id="max-width-dialog-title">Cover Hack</DialogTitle>
         <DialogContent>
-          <DialogContentText>Yaba daba doo</DialogContentText>
+          <DialogContentText>Hi there, {props.currentUser}.</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

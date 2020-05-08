@@ -23,7 +23,9 @@ const useStyles = makeStyles(theme => ({
 
 const MUIGrid = withStyles({
   root: {
-    height: "100%"
+    height: "100%",
+    paddingLeft: "12px",
+    paddingRight: "12px"
   }
 })(Grid);
 

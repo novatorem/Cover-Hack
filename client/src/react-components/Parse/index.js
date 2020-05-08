@@ -23,13 +23,15 @@ const darkTheme = createMuiTheme({
 });
 
 const MUITextField = withStyles({
-  root: {}
+  root: {
+    marginTop: "-1px",
+    marginBottom: "1px"}
 })(TextField);
 
 const MUIFormControl = withStyles({
   root: {
-    marginTop: "-2px",
-    marginBottom: "2px"
+    marginTop: "-3px",
+    marginBottom: "3px"
   }
 })(FormControl);
 
@@ -173,8 +175,9 @@ export default function Parse(props) {
         {data}
       </MUITypography>
       <MUIButton
-        color="default"
+        color="primary"
         onClick={showRaw}
+        variant="contained"
         startIcon={<FileCopyIcon />}
       >
         Copy to clipboard
