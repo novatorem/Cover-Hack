@@ -12,20 +12,26 @@ export const setEmptyState = () => {
   setState("currentUser", null);
   setState("loginForm", { username: "", password: "" });
   setState("userID", null);
-  
+
   // Snackbar login resources
   setState("loginFailed", false);
   setState("registered", false);
   setState("passwordShort", false);
   setState("invalidUsername", false);
-  
+
   // Snackbar Cover resources
   setState("coverTitle", null);
   setState("coverShort", false);
   setState("coverSuccess", false);
-  
+
   // Cover Resources
-  setState("userCovers", null);
   setState("cover", null);
   setState("info", false);
+  setState("userCovers", null);
+  setState("saveSuccess", false);
+
+  setState("defaultCover", {
+    data:
+      "Begin by creating a new cover letter.\n\nThen you can create input forms with {_}.\n\nSelectors can be created with {Developer/Engineer/Researcher}.\n\nStill in progress."
+  });
 };

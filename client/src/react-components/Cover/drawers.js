@@ -3,8 +3,10 @@ import React, { useState } from "react";
 
 import List from "@material-ui/core/List";
 import Menu from "@material-ui/core/Menu";
+import Paper from "@material-ui/core/Paper";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import MenuIcon from "@material-ui/icons/Menu";
 import InfoIcon from "@material-ui/icons/Info";
@@ -88,7 +90,11 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen
     }),
     marginLeft: -drawerWidth,
-    height: "100%"
+    height: "100%",
+    backgroundImage:
+      'url("https://cdn.glitch.com/0ae08cca-f72e-4675-be70-b794f4bd0b72%2Fbg.jpg?v=1588962305935")',
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
@@ -96,23 +102,34 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
+  },
+  button: {
+    textTransform: "none"
+  },
+  paper: {
+    height: "100%",
+    marginLeft: "12px",
+    marginRight: "12px"
   }
 }));
 
 export default function VerticalDrawer(props) {
+  let selectCount = -1;
   const classes = useStyles();
+  const defaultContent = (
+    <Page cover={props.defaultCover} />
+  );
+
   const [open, setOpen] = useState(true);
   const [cover, setCover] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [content, setContent] = useState(defaultContent);
   const [title, setTitle] = useState("Welcome to Cover Hack!");
+  const [selectedIndex, setSelectedIndex] = React.useState(null);
 
-  const [content, setContent] = useState(
-    <Typography paragraph>
-      Begin by creating a new cover letter. Then you can create input forms with{" "}
-      {"{_}"}. Selectors can be created with {"{Developer/Engineer/Researcher}"}
-      . Still in progress.
-    </Typography>
-  );
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -120,10 +137,6 @@ export default function VerticalDrawer(props) {
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
-
-  const handleInfoOpen = () => {
-    setState("info", true);
   };
 
   const menuOpen = event => {
@@ -134,9 +147,21 @@ export default function VerticalDrawer(props) {
     setAnchorEl(null);
   };
 
+  const handleInfoOpen = () => {
+    menuClose();
+    setState("info", true);
+  };
+
   const saveCover = () => {
     saveUserCover();
-    console.log("attempting to save");
+    console.log("Saving...");
+  };
+
+  const resetContent = () => {
+    setCover(null);
+    setState("cover", null);
+    setContent(defaultContent);
+    setTitle("Welcome to Cover Hack!");
   };
 
   return (
@@ -218,30 +243,41 @@ export default function VerticalDrawer(props) {
           }}
         >
           <div className={classes.drawerHeader}>
-            <Typography align="left" variant="subtitle1">
+            <Button onClick={resetContent} className={classes.button}>
+              Cover Hack
+            </Button>
+            {/*<Typography align="left" variant="subtitle1">
               Cover Letters
-            </Typography>
+            </Typography>*/}
             <IconButton onClick={handleDrawerClose}>
               <ChevronLeftIcon />
             </IconButton>
           </div>
           <Divider />
           <List>
+            {/* Drawer List - Populates all the cover letters on the drawer */}
             {props.userCovers
               ? props.userCovers.map(userCover => {
-                  return (
-                    <ListItem
-                      button
-                      key={userCover.title}
-                      onClick={() => (
-                        setTitle(userCover.title),
-                        setCover(userCover),
-                        setContent(<Page cover={userCover} />)
-                      )}
-                    >
-                      <ListItemText primary={userCover.title} />
-                    </ListItem>
-                  );
+                  return (function() {
+                    selectCount++;
+                    let currentDraw = selectCount;
+                    return (
+                      <ListItem
+                        button
+                        selected={selectedIndex === currentDraw}
+                        key={userCover.title}
+                        onClick={event => (
+                          setCover(userCover),
+                          setTitle(userCover.title),
+                          setState("cover", userCover),
+                          setContent(<Page cover={userCover} />),
+                          handleListItemClick(event, currentDraw)
+                        )}
+                      >
+                        <ListItemText primary={userCover.title} />
+                      </ListItem>
+                    );
+                  })();
                 })
               : null}
           </List>

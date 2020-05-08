@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import FormControl from "@material-ui/core/FormControl";
@@ -24,13 +23,15 @@ const darkTheme = createMuiTheme({
 });
 
 const MUITextField = withStyles({
-  root: {}
+  root: {
+    marginTop: "-1px",
+    marginBottom: "1px"}
 })(TextField);
 
 const MUIFormControl = withStyles({
   root: {
-    marginTop: "-2px",
-    marginBottom: "2px"
+    marginTop: "-3px",
+    marginBottom: "3px"
   }
 })(FormControl);
 
@@ -170,11 +171,13 @@ export default function Parse(props) {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <MUITypography align="left">{data}</MUITypography>
+      <MUITypography align="left" style={{ whiteSpace: "pre-line" }}>
+        {data}
+      </MUITypography>
       <MUIButton
-        variant="outlined"
-        color="default"
+        color="primary"
         onClick={showRaw}
+        variant="contained"
         startIcon={<FileCopyIcon />}
       >
         Copy to clipboard

@@ -8,7 +8,7 @@ html {
 body {
   color: #e7e8eb;
   text-align: center;
-  background-color: #e7e8eb;
+  background-color: #030d24;
   margin: 40px;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -18,6 +18,10 @@ h2,
 h3,
 p {
   text-align: center;
+}
+
+#root {
+  background-color: #030d24;
 }
 
 .app {
