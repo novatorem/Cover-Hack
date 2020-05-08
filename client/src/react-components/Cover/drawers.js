@@ -3,7 +3,6 @@ import React, { useState } from "react";
 
 import List from "@material-ui/core/List";
 import Menu from "@material-ui/core/Menu";
-import Paper from "@material-ui/core/Paper";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
@@ -120,7 +119,7 @@ export default function VerticalDrawer(props) {
     <Page cover={props.defaultCover} />
   );
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [cover, setCover] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [content, setContent] = useState(defaultContent);
@@ -162,6 +161,7 @@ export default function VerticalDrawer(props) {
     setState("cover", null);
     setContent(defaultContent);
     setTitle("Welcome to Cover Hack!");
+    setSelectedIndex(-1)
   };
 
   return (

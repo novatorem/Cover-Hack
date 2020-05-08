@@ -72,7 +72,14 @@ export const saveUserCover = async () => {
   // Wait 3 seconds to make sure the state is updated
   await new Promise(resolve => setTimeout(resolve, 500));
   const cover = getState("cover");
-  const url = "/covers/" + cover._id;
+  
+  // Oddly, it's _id for some, id for others
+  let url;
+  if (cover._id !== undefined) {
+    url = "/covers/" + cover._id;
+  } else {
+    url = "/covers/" + cover.id;
+  }
 
   const request = new Request(url, {
     method: "PATCH",
