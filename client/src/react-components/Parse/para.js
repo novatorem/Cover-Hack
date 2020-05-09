@@ -95,7 +95,7 @@ export default function Para(props) {
 
   return (
     <div>
-      <Typography>{selectedValue}</Typography>
+      <Typography align="left">{selectedValue}</Typography>
       <br />
       <IconButton
         color="default"

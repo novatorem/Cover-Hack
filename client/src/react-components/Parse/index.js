@@ -60,6 +60,8 @@ let selectCount = -1;
 let paraArr = [];
 let paraCount = -1;
 
+let paragraphData = [];
+
 const CTextField = function() {
   return (function() {
     inputCount++;
@@ -133,7 +135,25 @@ const createSelectors = function(element, index, array) {
   return select;
 };
 
-const paragraphData = ["Lorem Ipsum", "woodaday"];
+const filterParagraphs = function(element, index, array) {
+  if (typeof element[0] !== "string") {
+    return element;
+  }
+  paragraphData = [];
+  const listRegx = /{\w*\d*\s*:.*?}/g;
+  let select = element.split(listRegx);
+
+  let match;
+
+  while ((match = listRegx.exec(element)) !== null) {
+    paragraphData.push(match);
+  }
+
+  select = select.filter(item => item);
+
+  return select;
+};
+
 const createParagraphs = function(element, index, array) {
   if (typeof element[0] !== "string") {
     return element;
@@ -157,7 +177,6 @@ function getAll(sourceStr) {
   if (sourceStr.length < 1) {
     return [];
   }
-  ///{\w*\d*\s*:.*?}/g;
 
   inputCount = -1;
   selectCount = -1;
@@ -168,11 +187,14 @@ function getAll(sourceStr) {
     .map((e, i) => (i < input.length - 1 ? [e, CTextField()] : [e]))
     .reduce((a, b) => a.concat(b));
 
-  // Convert `{.../...}` to Select
+  // Convert `{.../.../...}` to Select
   let selectDone = inputDone.map(createSelectors).flat();
 
+  // Create the paragraphs from `{...:... ....}`
+  let paraFilter = selectDone.map(filterParagraphs).flat();
+
   // Convert `{*}` to Paragraph
-  let paraDone = selectDone.map(createParagraphs).flat();
+  let paraDone = paraFilter.map(createParagraphs).flat();
 
   return paraDone;
 }
@@ -182,7 +204,6 @@ export default function Parse(props) {
 
   const showRaw = () => {
     let inRaw = 0;
-    let paRaw = 0;
     let slRaw = 0;
     let rawList = [];
 
@@ -192,12 +213,11 @@ export default function Parse(props) {
     data.forEach(dataPoint => {
       if (typeof dataPoint === "string") {
         rawList.push(dataPoint);
-      } else if (dataPoint.props.store !== undefined) {
-        rawList.push(paraArr[paRaw]);
-        paRaw++;
-      } else if (dataPoint.props.id !== undefined) {
+      } else if (dataPoint.props.size === "small") {
         rawList.push(inputArr[inRaw]);
         inRaw++;
+      } else if (dataPoint.props.store !== undefined) {
+        rawList.push(dataPoint.props.store[0]);
       } else {
         rawList.push(selectArr[slRaw]);
         slRaw++;
