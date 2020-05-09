@@ -27,11 +27,13 @@ export const setEmptyState = () => {
   // Cover Resources
   setState("cover", null);
   setState("info", false);
+  setState("deleteC", false)
   setState("userCovers", null);
   setState("saveSuccess", false);
+  setState("deleteSuccess", false);
 
   setState("defaultCover", {
     data:
-      "Begin by creating a new cover letter.\n\nThen you can create input forms with {_}.\n\nSelectors can be created with {Developer/Engineer/Researcher}.\n\nTreat this as you would `MarkDown`!\n\nWorking on introducing more features and improvements over time"
+      "Begin by creating a new cover letter.\n\nThen you can create input forms with {_}.\n\nSelectors can be created with {Developer/Engineer/Researcher}.\n\nTreat this as you would `MarkDown`!"
   });
 };

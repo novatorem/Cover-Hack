@@ -2,6 +2,7 @@ import React from "react";
 import Container from "@material-ui/core/Container";
 import BaseReactComponent from "./../BaseReactComponent";
 
+import Delete from "./delete";
 import Info from "../Shared/info";
 import VerticalDrawer from "./drawers";
 import Snackbar from "../Shared/snackbar";
@@ -10,26 +11,51 @@ import "./../../App.css";
 import "./styles.css";
 /* Component for the cover Page */
 class Cover extends BaseReactComponent {
-  filterState({ coverShort, coverSuccess, userCovers, info, saveSuccess, defaultCover, currentUser }) {
-    return { coverShort, coverSuccess, userCovers, info, saveSuccess, defaultCover, currentUser };
+  filterState({
+    cover,
+    coverShort,
+    coverSuccess,
+    userCovers,
+    info,
+    deleteC,
+    saveSuccess,
+    defaultCover,
+    currentUser,
+    deleteSuccess
+  }) {
+    return {
+      cover,
+      coverShort,
+      coverSuccess,
+      userCovers,
+      info,
+      deleteC,
+      saveSuccess,
+      defaultCover,
+      currentUser,
+      deleteSuccess
+    };
   }
 
   render() {
     // the filtered states are now on this.state
     const {
+      cover,
       coverShort,
       coverSuccess,
       userCovers,
       info,
+      deleteC,
       saveSuccess,
       defaultCover,
-      currentUser
+      currentUser,
+      deleteSuccess
     } = this.state;
 
     return (
       <React.Fragment>
         <Container className="cover" maxWidth="false" disableGutters="true">
-          <VerticalDrawer userCovers={userCovers} defaultCover = {defaultCover} />
+          <VerticalDrawer userCovers={userCovers} defaultCover={defaultCover} />
         </Container>
 
         {coverShort === true && (
@@ -46,7 +72,12 @@ class Cover extends BaseReactComponent {
           <Snackbar severity="success" message="Saved" />
         )}
 
+        {deleteSuccess === true && (
+          <Snackbar severity="success" message="Deleted" />
+        )}
+
         {info === true && <Info currentUser={currentUser} />}
+        {deleteC === true && <Delete title={cover.title} />}
       </React.Fragment>
     );
   }

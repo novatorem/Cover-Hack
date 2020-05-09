@@ -170,7 +170,7 @@ app.patch("/covers/:cid", (req, res) => {
     res.status(404).send();
   }
 
-  // Update the student by their id.
+  // Update the cover by their id.
   Cover.findByIdAndUpdate(cid, { $set: body }, { new: true })
     .then(cover => {
       if (!cover) {
@@ -183,6 +183,34 @@ app.patch("/covers/:cid", (req, res) => {
       res.status(400).send();
     });
 });
+
+
+// a DELETE route to save cover to a user
+app.delete("/covers/:cid", (req, res) => {
+  const cid = req.params.cid;
+
+  // get the updated name and year only from the request body.
+  const { data } = req.body;
+  const body = { data };
+
+  if (!ObjectID.isValid(cid)) {
+    res.status(404).send();
+  }
+  
+  Cover.findByIdAndRemove(cid)
+    .then(cover => {
+      if (!cover) {
+        res.status(404).send();
+      } else {
+        res.send(cover);
+      }
+    })
+    .catch(error => {
+      res.status(500).send(); // server error, could not delete.
+    });
+});
+
+/* ---------------------------- */
 
 /** Student resource routes **/
 // a POST route to *create* a student
