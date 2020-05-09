@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import FormControl from "@material-ui/core/FormControl";
 
+import Para from "./para";
+
 import {
   createMuiTheme,
   ThemeProvider,
@@ -25,7 +27,8 @@ const darkTheme = createMuiTheme({
 const MUITextField = withStyles({
   root: {
     marginTop: "-1px",
-    marginBottom: "1px"}
+    marginBottom: "1px"
+  }
 })(TextField);
 
 const MUIFormControl = withStyles({
@@ -54,6 +57,8 @@ let inputArr = [];
 let inputCount = -1;
 let selectArr = [];
 let selectCount = -1;
+let paraArr = [];
+let paraCount = -1;
 
 const CTextField = function() {
   return (function() {
@@ -62,7 +67,6 @@ const CTextField = function() {
     let closureCount = inputCount;
     return (
       <MUITextField
-        id="outlined-basic"
         size="small"
         onChange={e => {
           inputArr[closureCount] = e.target.value;
@@ -100,6 +104,15 @@ const CSelect = function(match) {
   })();
 };
 
+const CParagraph = function() {
+  return (function() {
+    paraCount++;
+    paraArr.push("");
+    let closureCount = paraCount;
+    return <Para paragraphs={paragraphData} store={paraArr[closureCount]} />;
+  })();
+};
+
 const createSelectors = function(element, index, array) {
   if (typeof element === "object") {
     return element;
@@ -120,10 +133,31 @@ const createSelectors = function(element, index, array) {
   return select;
 };
 
+const paragraphData = ["Lorem Ipsum", "woodaday"];
+const createParagraphs = function(element, index, array) {
+  if (typeof element[0] !== "string") {
+    return element;
+  }
+
+  const listRegx = /{\*}/g;
+  let paragraph = element.split(listRegx);
+
+  let indx = 1;
+
+  while (listRegx.exec(element) !== null) {
+    paragraph.splice(indx, 0, CParagraph());
+    indx += 2;
+  }
+
+  paragraph = paragraph.filter(item => item);
+  return paragraph;
+};
+
 function getAll(sourceStr) {
   if (sourceStr.length < 1) {
     return [];
   }
+  ///{\w*\d*\s*:.*?}/g;
 
   inputCount = -1;
   selectCount = -1;
@@ -135,26 +169,32 @@ function getAll(sourceStr) {
     .reduce((a, b) => a.concat(b));
 
   // Convert `{.../...}` to Select
-  let selectDone = inputDone.map(createSelectors);
+  let selectDone = inputDone.map(createSelectors).flat();
 
-  return selectDone;
+  // Convert `{*}` to Paragraph
+  let paraDone = selectDone.map(createParagraphs).flat();
+
+  return paraDone;
 }
 
 export default function Parse(props) {
-  const data = getAll(props.data).flat();
-  //const [rawData, setRawData] = useState([]);
+  const data = getAll(props.data);
 
   const showRaw = () => {
     let inRaw = 0;
+    let paRaw = 0;
     let slRaw = 0;
     let rawList = [];
 
     inputArr = inputArr.filter(item => item);
     selectArr = selectArr.filter(item => item);
-
+    console.log(data);
     data.forEach(dataPoint => {
       if (typeof dataPoint === "string") {
         rawList.push(dataPoint);
+      } else if (dataPoint.props.store !== undefined) {
+        rawList.push(paraArr[paRaw]);
+        paRaw++;
       } else if (dataPoint.props.id !== undefined) {
         rawList.push(inputArr[inRaw]);
         inRaw++;
@@ -164,7 +204,6 @@ export default function Parse(props) {
       }
     });
 
-    //setRawData(rawList);
     console.log(rawList.join(""));
     navigator.clipboard.writeText(rawList.join(""));
   };
