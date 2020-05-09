@@ -13,6 +13,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import MenuItem from "@material-ui/core/MenuItem";
+import DeleteIcon from "@material-ui/icons/Delete";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { makeStyles } from "@material-ui/core/styles";
@@ -115,9 +116,7 @@ const useStyles = makeStyles(theme => ({
 export default function VerticalDrawer(props) {
   let selectCount = -1;
   const classes = useStyles();
-  const defaultContent = (
-    <Page cover={props.defaultCover} />
-  );
+  const defaultContent = <Page cover={props.defaultCover} />;
 
   const [open, setOpen] = useState(false);
   const [cover, setCover] = useState(null);
@@ -153,7 +152,10 @@ export default function VerticalDrawer(props) {
 
   const saveCover = () => {
     saveUserCover();
-    console.log("Saving...");
+  };
+
+  const deleteCover = () => {
+    setState("deleteC", true)
   };
 
   const resetContent = () => {
@@ -161,7 +163,7 @@ export default function VerticalDrawer(props) {
     setState("cover", null);
     setContent(defaultContent);
     setTitle("Welcome to Cover Hack!");
-    setSelectedIndex(-1)
+    setSelectedIndex(-1);
   };
 
   return (
@@ -188,7 +190,7 @@ export default function VerticalDrawer(props) {
               {title}
             </Typography>
 
-            {/* SAVE - if in a cover, show the save button*/}
+            {/* SAVE - if in a cover, show the save button */}
             {cover ? (
               <IconButton
                 aria-label="more"
@@ -200,6 +202,19 @@ export default function VerticalDrawer(props) {
               </IconButton>
             ) : null}
 
+            {/* DELETE - if in a cover, show the delete button*/}
+            {cover ? (
+              <IconButton
+                aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
+                onClick={deleteCover}
+              >
+                <DeleteIcon />
+              </IconButton>
+            ) : null}
+
+            {/* MORE - Extra menu items */}
             <IconButton
               aria-label="more"
               aria-controls="long-menu"

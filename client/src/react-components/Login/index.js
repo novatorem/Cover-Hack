@@ -61,6 +61,11 @@ class Login extends BaseReactComponent {
                 }
               }}
               onChange={e => updateLoginForm(e.target)}
+              onKeyDown={e => {
+              if (e.keyCode === 13) {
+                login();
+              }
+            }}
             />
 
             <Password />

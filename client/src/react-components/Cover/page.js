@@ -1,6 +1,5 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { Dimensions } from "react-native";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
@@ -9,6 +8,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 
 import Parse from "../Parse";
 import { setState } from "statezero";
+import dimensions from "../Shared/dimensions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,19 +50,17 @@ const MUIPaper = withStyles({
   }
 })(Paper);
 
-// Detect if mobile or laptop to orient grid
-let direction = "row";
-if (
-  Math.round(Dimensions.get("window").width) >=
-  Math.round(Dimensions.get("window").height)
-) {
-  direction = "column";
-}
-
 export default function Page(props) {
   const cover = props.cover;
   const classes = useStyles();
   const [data, setData] = React.useState(cover.data);
+
+  // Detect if mobile or laptop to orient grid
+  let direction = "column";
+  const { height, width } = dimensions();
+  if (width >= height) {
+    direction = "row";
+  }
 
   React.useEffect(() => {
     setData(cover.data);

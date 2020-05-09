@@ -69,7 +69,7 @@ export const getUserCovers = () => {
 };
 
 export const saveUserCover = async () => {
-  // Wait 3 seconds to make sure the state is updated
+  // Wait 0.5 seconds to make sure the state is updated
   await new Promise(resolve => setTimeout(resolve, 500));
   const cover = getState("cover");
   
@@ -100,6 +100,49 @@ export const saveUserCover = async () => {
         setTimeout(function() {
           setState("saveSuccess", false);
         }, 3250);
+        return res.json();
+      } else {
+        console.log(res);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+export const deleteUserCover = async () => {
+  // Wait 0.5 seconds to make sure the state is updated
+  await new Promise(resolve => setTimeout(resolve, 500));
+  const cover = getState("cover");
+  
+  // Oddly, it's _id for some, id for others
+  let url;
+  if (cover._id !== undefined) {
+    url = "/covers/" + cover._id;
+  } else {
+    url = "/covers/" + cover.id;
+  }
+
+  const request = new Request(url, {
+    method: "DELETE",
+    body: JSON.stringify({
+      data: cover.data
+    }),
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    }
+  });
+
+  // Send the request with fetch()
+  fetch(request)
+    .then(res => {
+      if (res.status === 200) {
+        setState("deleteSuccess", true);
+        setTimeout(function() {
+          setState("deleteSuccess", false);
+        }, 3250);
+        getUserCovers();
         return res.json();
       } else {
         console.log(res);

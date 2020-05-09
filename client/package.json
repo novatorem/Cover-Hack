@@ -9,6 +9,7 @@
     "lodash-es": "^4.17.15",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-draggable": "^4.3.1",
     "react-https-redirect": "^1.1.0",
     "react-native": "^0.62.2",
     "react-particles-js": "^3.0.3",
