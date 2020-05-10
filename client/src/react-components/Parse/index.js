@@ -218,8 +218,7 @@ export default function Parse(props) {
         rawList.push(inputArr[inRaw]);
         inRaw++;
       } else if (dataPoint.props.store !== undefined) {
-        rawList.push(dataPoint.props.store[0]);
-        console.log(dataPoint.props.store)
+        rawList.push(dataPoint.props.store);
       } else {
         rawList.push(selectArr[slRaw]);
         slRaw++;
