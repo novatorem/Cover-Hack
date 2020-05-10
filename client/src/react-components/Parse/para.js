@@ -42,17 +42,19 @@ function SimpleDialog(props) {
       <DialogTitle id="simple-dialog-title">Choose a Paragraph</DialogTitle>
       <List>
         {props.paragraphs.map(paragraph => (
+          paragraph = paragraph[0].substring(1, paragraph[0].length-1),
+          
           <ListItem
             button
-            onClick={() => handleListItemClick(paragraph)}
-            key={paragraph}
+            onClick={() => handleListItemClick(paragraph.split(':')[1])}
+            key={paragraph.split(':')[1]}
           >
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <SubjectIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={paragraph} />
+            <ListItemText primary={paragraph.split(':')[0]} />
           </ListItem>
         ))}
 

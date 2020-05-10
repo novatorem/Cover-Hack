@@ -207,9 +207,10 @@ export default function Parse(props) {
     let slRaw = 0;
     let rawList = [];
 
-    inputArr = inputArr.filter(item => item);
-    selectArr = selectArr.filter(item => item);
-    console.log(data);
+    //Trailing whitespaces issue, ignore or remove?
+    //while (inputArr.pop() === "");
+    //while (selectArr.pop() === "");
+    
     data.forEach(dataPoint => {
       if (typeof dataPoint === "string") {
         rawList.push(dataPoint);
@@ -218,6 +219,7 @@ export default function Parse(props) {
         inRaw++;
       } else if (dataPoint.props.store !== undefined) {
         rawList.push(dataPoint.props.store[0]);
+        console.log(dataPoint.props.store)
       } else {
         rawList.push(selectArr[slRaw]);
         slRaw++;
