@@ -47,15 +47,15 @@ function SimpleDialog(props) {
             (
               <ListItem
                 button
-                onClick={() => handleListItemClick(paragraph.split(":")[1])}
-                key={paragraph.split(":")[1]}
+                onClick={() => handleListItemClick(paragraph.split("|")[1])}
+                key={paragraph.split("|")[1]}
               >
                 <ListItemAvatar>
                   <Avatar className={classes.avatar}>
                     <SubjectIcon />
                   </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary={paragraph.split(":")[0]} />
+                <ListItemText primary={paragraph.split("|")[0]} />
               </ListItem>
             )
           )
@@ -93,6 +93,7 @@ export default function Para(props) {
   };
 
   const handleClose = value => {
+    props.paraArr[props.closureCount] = value
     setOpen(false);
     setSelectedValue(value);
     props.store = value;

@@ -111,7 +111,14 @@ const CParagraph = function() {
     paraCount++;
     paraArr.push("");
     let closureCount = paraCount;
-    return <Para paragraphs={paragraphData} store={paraArr[closureCount]} />;
+    return (
+      <Para
+        paragraphs={paragraphData}
+        store={paraArr[closureCount]}
+        paraArr={paraArr}
+        closureCount={closureCount}
+      />
+    );
   })();
 };
 
@@ -140,7 +147,7 @@ const filterParagraphs = function(element, index, array) {
     return element;
   }
   paragraphData = [];
-  const listRegx = /{\w*\d*\s*:.*?}/g;
+  const listRegx = /{.+\|(.|[\r\n])+?}/g;
   let select = element.split(listRegx);
 
   let match;
@@ -205,12 +212,33 @@ export default function Parse(props) {
   const showRaw = () => {
     let inRaw = 0;
     let slRaw = 0;
+    let paRaw = 0;
     let rawList = [];
 
-    //Trailing whitespaces issue, ignore or remove?
-    //while (inputArr.pop() === "");
-    //while (selectArr.pop() === "");
-    
+    // Logic creates empty values trailing, remove them
+    while (inputArr[inputArr.length - 1] === "") {
+      inputArr.pop();
+    }
+    while (selectArr[selectArr.length - 1] === "") {
+      selectArr.pop();
+    }
+
+    // console.log(paraArr);
+    // // Logic also creates empty values, remove them
+    // while (paraArr[paraArr.length - 1] === "") {
+    //   paraArr.pop();
+    // }
+    // console.log(paraArr);
+    // let paraTemp = [];
+    // for (let i = paraArr.length - 1; i >= 0; i--) {
+    //   if (paraArr[i] !== "") {
+    //     paraTemp.unshift(paraArr[i]);
+    //   }
+    // }
+    // paraArr = paraTemp;
+
+    console.log(paraArr);
+
     data.forEach(dataPoint => {
       if (typeof dataPoint === "string") {
         rawList.push(dataPoint);
@@ -218,7 +246,8 @@ export default function Parse(props) {
         rawList.push(inputArr[inRaw]);
         inRaw++;
       } else if (dataPoint.props.store !== undefined) {
-        rawList.push(dataPoint.props.store);
+        rawList.push(paraArr[paRaw]);
+        paRaw++;
       } else {
         rawList.push(selectArr[slRaw]);
         slRaw++;
