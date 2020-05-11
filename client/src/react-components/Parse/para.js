@@ -1,15 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import List from "@material-ui/core/List";
-import AddIcon from "@material-ui/icons/Add";
+import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import { blue } from "@material-ui/core/colors";
 import ListItem from "@material-ui/core/ListItem";
 import SubjectIcon from "@material-ui/icons/Subject";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import ClearAllIcon from "@material-ui/icons/ClearAll";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -39,7 +40,7 @@ function SimpleDialog(props) {
       aria-labelledby="simple-dialog-title"
       open={open}
     >
-      <DialogTitle id="simple-dialog-title">Choose a Paragraph</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Add a Paragraph</DialogTitle>
       <List>
         {props.paragraphs.map(
           paragraph => (
@@ -61,17 +62,13 @@ function SimpleDialog(props) {
           )
         )}
 
-        <ListItem
-          autoFocus
-          button
-          onClick={() => handleListItemClick("newParagraph")}
-        >
+        <ListItem autoFocus button onClick={() => handleListItemClick("")}>
           <ListItemAvatar>
             <Avatar>
-              <AddIcon />
+              <ClearAllIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="New paragraph" />
+          <ListItemText primary="Clear" />
         </ListItem>
       </List>
     </Dialog>
@@ -93,7 +90,7 @@ export default function Para(props) {
   };
 
   const handleClose = value => {
-    props.paraArr[props.closureCount] = value
+    props.paraArr[props.closureCount] = value;
     setOpen(false);
     setSelectedValue(value);
     props.store = value;
@@ -103,14 +100,17 @@ export default function Para(props) {
     <div>
       <Typography align="left">{selectedValue}</Typography>
       <br />
-      <IconButton
-        color="default"
-        aria-label="paragraph"
-        component="span"
-        onClick={handleClickOpen}
-      >
-        <SubjectIcon />
-      </IconButton>
+      <Grid container justify="center">
+        <Button
+          color="default"
+          variant="outlined"
+          aria-label="paragraph"
+          onClick={handleClickOpen}
+        >
+          <SubjectIcon />
+        </Button>
+      </Grid>
+
       <SimpleDialog
         selectedValue={selectedValue}
         open={open}

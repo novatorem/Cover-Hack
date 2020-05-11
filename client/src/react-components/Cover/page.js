@@ -44,10 +44,10 @@ const MUIHeader = withStyles({
 })(Typography);
 
 const MUIPaper = withStyles({
-  root: {
-    position: "relative",
-    overflow: "auto"
-  }
+  // root: {
+  //   position: "relative",
+  //   overflow: "auto"
+  // }
 })(Paper);
 
 export default function Page(props) {
