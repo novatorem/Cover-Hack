@@ -147,18 +147,19 @@ const filterParagraphs = function(element, index, array) {
     return element;
   }
   paragraphData = [];
-  const listRegx = /{.+\|(.|[\r\n])+?}/g;
-  let select = element.split(listRegx);
-
+  const listRegx = /{.+\|(.|[\r\n])*?}/g;
+  console.log(element);
+  let paraData = element.split(listRegx);
+  console.log(paraData);
   let match;
 
   while ((match = listRegx.exec(element)) !== null) {
     paragraphData.push(match);
   }
 
-  select = select.filter(item => item);
-
-  return select;
+  paraData = paraData.filter(item => item);
+  console.log(paraData);
+  return paraData;
 };
 
 const createParagraphs = function(element, index, array) {
@@ -197,7 +198,7 @@ function getAll(sourceStr) {
   // Convert `{.../.../...}` to Select
   let selectDone = inputDone.map(createSelectors).flat();
 
-  // Create the paragraphs from `{...:... ....}`
+  // Create the paragraphs from `{...|... ....}`
   let paraFilter = selectDone.map(filterParagraphs).flat();
 
   // Convert `{*}` to Paragraph
@@ -223,22 +224,31 @@ export default function Parse(props) {
       selectArr.pop();
     }
 
-    // console.log(paraArr);
-    // // Logic also creates empty values, remove them
-    // while (paraArr[paraArr.length - 1] === "") {
-    //   paraArr.pop();
-    // }
-    // console.log(paraArr);
-    // let paraTemp = [];
-    // for (let i = paraArr.length - 1; i >= 0; i--) {
-    //   if (paraArr[i] !== "") {
-    //     paraTemp.unshift(paraArr[i]);
-    //   }
-    // }
-    // paraArr = paraTemp;
+    // --- This fixes a bug in a neat hack ---
+    // paragraphs out of order once changes made to {data}
+    let rawCount = 0;
+    data.forEach(dataPoint => {
+      if (dataPoint.props !== undefined) {
+        if (dataPoint.props.store !== undefined) {
+          rawCount++;
+        }
+      }
+    });
 
-    console.log(paraArr);
+    let tParaArr = paraArr.slice(paraArr.length - rawCount, paraArr.length);
+    let divider = paraArr.length / rawCount;
+    for (let i = divider - 1; i >= 0; i--) {
+      for (let j = 0; j < rawCount; j++) {
+        if (tParaArr[j] === "" || tParaArr[j] === undefined) {
+          if (paraArr[i + j] !== "" && paraArr[i + j] !== undefined) {
+            tParaArr[j] = paraArr[i + j];
+          }
+        }
+      }
+    }
+    // ---
 
+    // Go through each datapoint and extract the required data from them
     data.forEach(dataPoint => {
       if (typeof dataPoint === "string") {
         rawList.push(dataPoint);
@@ -246,7 +256,7 @@ export default function Parse(props) {
         rawList.push(inputArr[inRaw]);
         inRaw++;
       } else if (dataPoint.props.store !== undefined) {
-        rawList.push(paraArr[paRaw]);
+        rawList.push(tParaArr[paRaw]);
         paRaw++;
       } else {
         rawList.push(selectArr[slRaw]);
