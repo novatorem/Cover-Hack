@@ -40,8 +40,9 @@ const MUIFormControl = withStyles({
 
 const MUIButton = withStyles(theme => ({
   root: {
-    position: "sticky",
-    bottom: "1%"
+    position: "absolute",
+    bottom: "11px",
+    right: "17px"
   }
 }))(Button);
 
