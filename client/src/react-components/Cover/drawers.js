@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   titleTypo: {
-    flex: 1
+    flex: 1,
   },
   hide: {
     display: "none"
@@ -186,7 +186,7 @@ export default function VerticalDrawer(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap className={clsx(classes.titleTypo)}>
+            <Typography variant="h6" noWrap align="left" className={clsx(classes.titleTypo)}>
               {title}
             </Typography>
 

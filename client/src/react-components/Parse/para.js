@@ -14,7 +14,7 @@ import ClearAllIcon from "@material-ui/icons/ClearAll";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-
+import "./styles.css";
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],

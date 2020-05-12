@@ -40,8 +40,9 @@ const MUIFormControl = withStyles({
 
 const MUIButton = withStyles(theme => ({
   root: {
-    position: "sticky",
-    bottom: "1%"
+    position: "absolute",
+    bottom: "11px",
+    right: "17px"
   }
 }))(Button);
 
@@ -49,7 +50,8 @@ const MUITypography = withStyles({
   root: {
     overflow: "auto",
     marginTop: "15px",
-    height: "calc(100% - 18px)"
+    height: "calc(100% - 18px)",
+    scrollbarWidth: "none"
   }
 })(Typography);
 

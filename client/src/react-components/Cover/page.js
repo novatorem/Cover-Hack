@@ -32,7 +32,10 @@ const MUIGrid = withStyles({
 
 const MUITextField = withStyles({
   root: {
-    marginTop: "15px"
+    marginTop: "15px",
+    height: "calc(100% - 18px)",
+    overflow: "scroll",
+    scrollbarWidth: "none"
   }
 })(TextField);
 
@@ -87,6 +90,7 @@ export default function Page(props) {
               InputProps={{ disableUnderline: true }}
               value={data}
               onChange={handleChange}
+              autoFocus="true"
             />
           </Paper>
         </MUIGrid>
