@@ -40,16 +40,16 @@ const MUIFormControl = withStyles({
 
 const MUIButton = withStyles(theme => ({
   root: {
-    position: "absolute",
-    bottom: "1%",
-    right: "1%"
+    position: "sticky",
+    bottom: "1%"
   }
 }))(Button);
 
 const MUITypography = withStyles({
   root: {
     overflow: "auto",
-    marginTop: "15px"
+    marginTop: "15px",
+    height: "calc(100% - 18px)"
   }
 })(Typography);
 
@@ -147,7 +147,9 @@ const filterParagraphs = function(element, index, array) {
     return element;
   }
   paragraphData = [];
-  const listRegx = /{.+\|(.|[\r\n])*?}/g;
+  // JS bug with trailing last character caused by regex new line
+  ///{.+\|(.|[\r\n])+?}/g;
+  const listRegx = /{.+\|.+?}/g;
   console.log(element);
   let paraData = element.split(listRegx);
   console.log(paraData);

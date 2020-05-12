@@ -190,18 +190,6 @@ export default function VerticalDrawer(props) {
               {title}
             </Typography>
 
-            {/* SAVE - if in a cover, show the save button */}
-            {cover ? (
-              <IconButton
-                aria-label="more"
-                aria-controls="long-menu"
-                aria-haspopup="true"
-                onClick={saveCover}
-              >
-                <SaveIcon />
-              </IconButton>
-            ) : null}
-
             {/* DELETE - if in a cover, show the delete button*/}
             {cover ? (
               <IconButton
@@ -211,6 +199,18 @@ export default function VerticalDrawer(props) {
                 onClick={deleteCover}
               >
                 <DeleteIcon />
+              </IconButton>
+            ) : null}
+
+            {/* SAVE - if in a cover, show the save button */}
+            {cover ? (
+              <IconButton
+                aria-label="more"
+                aria-controls="long-menu"
+                aria-haspopup="true"
+                onClick={saveCover}
+              >
+                <SaveIcon />
               </IconButton>
             ) : null}
 

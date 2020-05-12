@@ -3,7 +3,11 @@
 Details will be added once I actually get this bad boy up and running!
 For now, dev instructions since this is a nice environment to be working with as a base.
 
-* Flavor bug: paragraphs out of order once changes made to {data}
+* Hide scrollbar in typography (firefox)
+* Properly center title (or move left)
+* Add sample cover letter for new users
+* New intro (?)
+* Add info 
 
 ------------------------------------------
 
