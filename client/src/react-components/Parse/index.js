@@ -147,7 +147,9 @@ const filterParagraphs = function(element, index, array) {
     return element;
   }
   paragraphData = [];
-  const listRegx = /{.+\|(.|[\r\n])*?}/g;
+  // JS bug with trailing last character caused by regex new line
+  ///{.+\|(.|[\r\n])+?}/g;
+  const listRegx = /{.+\|.+?}/g;
   console.log(element);
   let paraData = element.split(listRegx);
   console.log(paraData);
