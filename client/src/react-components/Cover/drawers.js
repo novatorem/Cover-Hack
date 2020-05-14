@@ -27,7 +27,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Page from "./page";
 import NewCover from "./new";
-import { setState } from "statezero";
+import { setState, getState } from "statezero";
 import { logout } from "../../actions/user";
 import { saveUserCover } from "../../actions/cover";
 
@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   titleTypo: {
-    flex: 1,
+    flex: 1
   },
   hide: {
     display: "none"
@@ -116,9 +116,13 @@ const useStyles = makeStyles(theme => ({
 export default function VerticalDrawer(props) {
   let selectCount = -1;
   const classes = useStyles();
-  const defaultContent = <Page cover={props.defaultCover} />;
+  
+  const introCover = {
+    data: "Hello, " + getState("currentUser") + "! " + props.introCover
+  };
+  const defaultContent = <Page cover={introCover} />;
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [cover, setCover] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [content, setContent] = useState(defaultContent);
@@ -155,7 +159,7 @@ export default function VerticalDrawer(props) {
   };
 
   const deleteCover = () => {
-    setState("deleteC", true)
+    setState("deleteC", true);
   };
 
   const resetContent = () => {
@@ -186,21 +190,14 @@ export default function VerticalDrawer(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap align="left" className={clsx(classes.titleTypo)}>
+            <Typography
+              variant="h6"
+              noWrap
+              align="left"
+              className={clsx(classes.titleTypo)}
+            >
               {title}
             </Typography>
-
-            {/* DELETE - if in a cover, show the delete button*/}
-            {cover ? (
-              <IconButton
-                aria-label="more"
-                aria-controls="long-menu"
-                aria-haspopup="true"
-                onClick={deleteCover}
-              >
-                <DeleteIcon />
-              </IconButton>
-            ) : null}
 
             {/* SAVE - if in a cover, show the save button */}
             {cover ? (
@@ -237,6 +234,16 @@ export default function VerticalDrawer(props) {
                 </ListItemIcon>
                 <Typography>Info</Typography>
               </MenuItem>
+
+              {/* DELETE - if in a cover, show the delete button*/}
+              {cover ? (
+                <MenuItem onClick={deleteCover}>
+                  <ListItemIcon>
+                    <DeleteIcon fontSize="small" />
+                  </ListItemIcon>
+                  <Typography>Delete</Typography>
+                </MenuItem>
+              ) : null}
 
               {/* LOGOUT - Submenu option to log out */}
               <MenuItem onClick={logout}>

@@ -19,7 +19,7 @@ class Cover extends BaseReactComponent {
     info,
     deleteC,
     saveSuccess,
-    defaultCover,
+    introCover,
     currentUser,
     deleteSuccess
   }) {
@@ -31,7 +31,7 @@ class Cover extends BaseReactComponent {
       info,
       deleteC,
       saveSuccess,
-      defaultCover,
+      introCover,
       currentUser,
       deleteSuccess
     };
@@ -47,7 +47,7 @@ class Cover extends BaseReactComponent {
       info,
       deleteC,
       saveSuccess,
-      defaultCover,
+      introCover,
       currentUser,
       deleteSuccess
     } = this.state;
@@ -55,7 +55,7 @@ class Cover extends BaseReactComponent {
     return (
       <React.Fragment>
         <Container className="cover" maxWidth="false" disableGutters="true">
-          <VerticalDrawer userCovers={userCovers} defaultCover={defaultCover} />
+          <VerticalDrawer userCovers={userCovers} introCover={introCover} />
         </Container>
 
         {coverShort === true && (

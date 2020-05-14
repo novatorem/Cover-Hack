@@ -27,14 +27,14 @@ export const setEmptyState = () => {
   // Cover Resources
   setState("cover", null);
   setState("info", false);
-  setState("deleteC", false)
+  setState("deleteC", false);
   setState("userCovers", null);
   setState("saveSuccess", false);
   setState("deleteSuccess", false);
 
-  setState("defaultCover", {
-    data:
-`Hello! I've gone ahead and created a sample cover letter for you. You can create your own or access the sample by clicking the hamburger menu on the top left corner of the page.
+  setState(
+    "introCover",
+    `I've gone ahead and created a sample cover letter for you. You can create your own or access the sample by clicking the hamburger menu on the top left corner of the page.
 
 For a quick guide, you can create input forms with {_}.
 
@@ -53,5 +53,5 @@ If you have any questions, comments, or issues, please open a story on github.
 
 {Sample Paragraph|Lorem Ipsum and so on}
 {Another one|What's the rest of Lorem Ipsum?}`
-  });
+  );
 };
