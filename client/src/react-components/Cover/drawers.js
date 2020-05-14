@@ -27,7 +27,7 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 import Page from "./page";
 import NewCover from "./new";
-import { setState } from "statezero";
+import { setState, getState } from "statezero";
 import { logout } from "../../actions/user";
 import { saveUserCover } from "../../actions/cover";
 
@@ -116,9 +116,13 @@ const useStyles = makeStyles(theme => ({
 export default function VerticalDrawer(props) {
   let selectCount = -1;
   const classes = useStyles();
-  const defaultContent = <Page cover={props.defaultCover}/>;
+  
+  const introCover = {
+    data: "Hello, " + getState("currentUser") + "! " + props.introCover
+  };
+  const defaultContent = <Page cover={introCover} />;
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const [cover, setCover] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
   const [content, setContent] = useState(defaultContent);
@@ -288,9 +292,7 @@ export default function VerticalDrawer(props) {
                           setCover(userCover),
                           setTitle(userCover.title),
                           setState("cover", userCover),
-                          setContent(
-                            <Page cover={userCover}/>
-                          ),
+                          setContent(<Page cover={userCover} />),
                           handleListItemClick(event, currentDraw)
                         )}
                       >

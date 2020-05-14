@@ -42,7 +42,7 @@ const MUIButton = withStyles(theme => ({
   root: {
     position: "absolute",
     bottom: "11px",
-    right: "17px"
+    right: "11px"
   }
 }))(Button);
 

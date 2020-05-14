@@ -29,7 +29,8 @@ const MUIGrid = withStyles({
   root: {
     height: "100%",
     paddingLeft: "12px",
-    paddingRight: "12px"
+    paddingRight: "12px",
+    position: "relative"
   }
 })(Grid);
 
@@ -49,11 +50,11 @@ const MUIHeader = withStyles({
   }
 })(Typography);
 
-const MUIButton = withStyles({
+const VisButton = withStyles({
   root: {
     position: "absolute",
     bottom: "11px",
-    left: "17px",
+    left: "23px",
     zIndex: "1"
   }
 })(Button);
@@ -127,13 +128,13 @@ export default function Page(props) {
           </Paper>
         </MUIGrid>
 
-        <MUIButton
+        <VisButton
           variant="contained"
           color="primary"
           onClick={handleVisibility}
         >
           {visibilityIcon}
-        </MUIButton>
+        </VisButton>
       </MUIGrid>
     </div>
   );
