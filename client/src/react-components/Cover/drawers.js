@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   titleTypo: {
-    flex: 1,
+    flex: 1
   },
   hide: {
     display: "none"
@@ -116,7 +116,7 @@ const useStyles = makeStyles(theme => ({
 export default function VerticalDrawer(props) {
   let selectCount = -1;
   const classes = useStyles();
-  const defaultContent = <Page cover={props.defaultCover} />;
+  const defaultContent = <Page cover={props.defaultCover}/>;
 
   const [open, setOpen] = useState(false);
   const [cover, setCover] = useState(null);
@@ -155,7 +155,7 @@ export default function VerticalDrawer(props) {
   };
 
   const deleteCover = () => {
-    setState("deleteC", true)
+    setState("deleteC", true);
   };
 
   const resetContent = () => {
@@ -186,21 +186,14 @@ export default function VerticalDrawer(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap align="left" className={clsx(classes.titleTypo)}>
+            <Typography
+              variant="h6"
+              noWrap
+              align="left"
+              className={clsx(classes.titleTypo)}
+            >
               {title}
             </Typography>
-
-            {/* DELETE - if in a cover, show the delete button*/}
-            {cover ? (
-              <IconButton
-                aria-label="more"
-                aria-controls="long-menu"
-                aria-haspopup="true"
-                onClick={deleteCover}
-              >
-                <DeleteIcon />
-              </IconButton>
-            ) : null}
 
             {/* SAVE - if in a cover, show the save button */}
             {cover ? (
@@ -237,6 +230,16 @@ export default function VerticalDrawer(props) {
                 </ListItemIcon>
                 <Typography>Info</Typography>
               </MenuItem>
+
+              {/* DELETE - if in a cover, show the delete button*/}
+              {cover ? (
+                <MenuItem onClick={deleteCover}>
+                  <ListItemIcon>
+                    <DeleteIcon fontSize="small" />
+                  </ListItemIcon>
+                  <Typography>Delete</Typography>
+                </MenuItem>
+              ) : null}
 
               {/* LOGOUT - Submenu option to log out */}
               <MenuItem onClick={logout}>
@@ -285,7 +288,9 @@ export default function VerticalDrawer(props) {
                           setCover(userCover),
                           setTitle(userCover.title),
                           setState("cover", userCover),
-                          setContent(<Page cover={userCover} />),
+                          setContent(
+                            <Page cover={userCover}/>
+                          ),
                           handleListItemClick(event, currentDraw)
                         )}
                       >

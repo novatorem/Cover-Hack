@@ -27,7 +27,7 @@ export const setEmptyState = () => {
   // Cover Resources
   setState("cover", null);
   setState("info", false);
-  setState("deleteC", false)
+  setState("deleteC", false);
   setState("userCovers", null);
   setState("saveSuccess", false);
   setState("deleteSuccess", false);
