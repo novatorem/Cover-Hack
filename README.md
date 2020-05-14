@@ -1,13 +1,5 @@
 # Cover Hack
 
-Details will be added once I actually get this bad boy up and running!
-For now, dev instructions since this is a nice environment to be working with as a base.
-
-* Fix TextField
-* Add sample cover letter for new users
-* New intro (?)
-* Add info 
-
 ------------------------------------------
 
 ## Development Instructions
@@ -128,9 +120,9 @@ Statezero makes it simple to read and update the global state in your app withou
 ### Deployment
 
 #### MongoDB Atlas
-1. Create a Project, and cluster (or use the default Project0 Sandbox Cluster
-2. In the left sidebar menu: Make sure under the security section you whitelist 0.0.0.0/0 (or select connect from anywhere)
-3. Under the database access tab make sure you add a user that has read/write access
+1. Create a Project, and cluster (or use the default Project0 Sandbox Cluster)
+2. In the left sidebar menu: In security, whitelist 0.0.0.0/0 (or select connect from anywhere)
+3. Under the database access tab, add a user that has read/write access
 4. Grab the connection string for your database and plug in your password
 
 #### Glitch

@@ -152,9 +152,7 @@ const filterParagraphs = function(element, index, array) {
   // JS bug with trailing last character caused by regex new line
   ///{.+\|(.|[\r\n])+?}/g;
   const listRegx = /{.+\|.+?}/g;
-  console.log(element);
   let paraData = element.split(listRegx);
-  console.log(paraData);
   let match;
 
   while ((match = listRegx.exec(element)) !== null) {
@@ -162,7 +160,6 @@ const filterParagraphs = function(element, index, array) {
   }
 
   paraData = paraData.filter(item => item);
-  console.log(paraData);
   return paraData;
 };
 
