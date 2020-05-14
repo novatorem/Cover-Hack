@@ -2,7 +2,7 @@
 // setState is used to set the value of a state path
 import { getState, setState } from "statezero";
 import { setEmptyState } from "./helpers";
-import { getUserCovers } from "./cover";
+import { getUserCovers, defaultCover } from "./cover";
 
 export const readCookie = () => {
   const url = "/users/check-session";
@@ -85,11 +85,12 @@ export const register = event => {
     .then(json => {
       if (json !== undefined) {
         // Successful registration
+        // Create the sample cover letter
+        defaultCover(json._id);
         setState("registered", true);
         setTimeout(function() {
           setState("registered", false);
         }, 3250);
-
         login();
       } else if (getState("loginForm").password.length < 6) {
         // Short password

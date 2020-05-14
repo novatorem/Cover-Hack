@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
+import Divider from "@material-ui/core/Divider";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -25,6 +26,7 @@ export default function FullScreenDialog(props) {
     <ThemeProvider theme={darkTheme}>
       <Dialog fullWidth={true} maxWidth="lg" open={true} onClose={handleClose}>
         <DialogTitle id="max-width-dialog-title">Cover Hack</DialogTitle>
+        <Divider />
         <DialogContent>
           <DialogContentText>Hi there, {props.currentUser}.</DialogContentText>
         </DialogContent>
