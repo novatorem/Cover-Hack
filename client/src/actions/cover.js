@@ -174,7 +174,7 @@ Best Regards,
 {_}
 
 {Bank Work|In addition to the above distinguishing factors, I have always focused on providing exceptional customer service; I have performed transactions in complete accordance to the policies and procedures of the bank, and I have put my best efforts forward to offer insight in streamlining operations and assist customer retention.}
-{Personal|What I like most about my current job is that it gives me the opportunity to learn and be creative, and it looks like this position would do the same. I feel that I could be a valuable asset to your team, and I bring to the table all of the skills that you require in an editor.}"`;
+{Personal|What I like most about my current job is that it gives me the opportunity to learn and be creative, and it looks like this position would do the same. I feel that I could be a valuable asset to your team, and I bring to the table all of the skills that you require in an editor.}`;
 
   // Create our request constructor with all the parameters we need
   const request = new Request(url, {

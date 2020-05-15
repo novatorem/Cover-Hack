@@ -1,5 +1,41 @@
 # Cover Hack
 
+A custom cover letter creator built on React, Node, and MongoDB alongside some other frameworks like express, bcrypt, and mui. This webapp allows you to dynamically create cover letters through the use of a custom markdown solution.
+
+## Tech Features
+
+<table style="text-align:center;">
+  <tr>
+    <td>Encrypted Login</td>
+    <td>Session Handling</td>
+    <td>State Zero</td>
+  </tr>
+  <tr>
+    <td>Adaptive UI</td>
+    <td>Single Page</td>
+    <td>Memory Optimization</td>
+  </tr>
+  <tr>
+    <td>Dynamic Editing</td>
+    <td>Custom Views</td>
+    <td><sub><sup>🚧</sup></sub> Auto Save</td>
+  </tr>
+</table>
+
+## Overview
+
+When writing templates, you can use the custom symbols below to insert interactive modules in the cover letter.
+
+Name | Text | Symbol | Comment
+:---: | :---: | :---: | ---
+Input|{_}|_____|Creates an input field
+Selector|{.../.../...}|__ ↓|Allows you to select from any number of text
+Paragraph Data|{Title\|Paragraph Text}| |Fills paragraph data to be picked by a field
+Paragraph Field|{*}|☰|Creates a paragraph selector to choose a set of data
+
+Sample Video:
+
+
 ------------------------------------------
 
 ## Development Instructions
