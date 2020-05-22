@@ -1,6 +1,8 @@
 # Cover Hack
 
-A custom cover letter creator built on React, Node, and MongoDB alongside some other frameworks like express, bcrypt, and mui. This webapp allows you to dynamically create cover letters through the use of a custom markdown solution.
+A custom cover letter creator that allows you to dynamically create cover letters through the use of a custom markdown solution. This webapp was built with React, Node, and MongoDB - alongside some other frameworks like express, bcrypt, and mui. 
+
+[Use it here!](https://cover-hack.glitch.me/)
 
 Login:
 
