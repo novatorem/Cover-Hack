@@ -2,6 +2,25 @@
 
 A custom cover letter creator built on React, Node, and MongoDB alongside some other frameworks like express, bcrypt, and mui. This webapp allows you to dynamically create cover letters through the use of a custom markdown solution.
 
+Login:
+
+![](readme/login.gif)
+
+Preview:
+
+![](readme/preview.gif)
+
+## Overview
+
+When writing templates, you can use the custom symbols below to insert interactive modules in the cover letter.
+
+Name | Text | Symbol | Comment
+--- | --- | :---: | ---
+Input|{_}|_____|Creates an input field
+Selector|{.../.../...}|___ ↓|Allows you to select from any number of text
+Paragraph Data|{Title\|Paragraph Text}| |Fills paragraph data to be picked by a field
+Paragraph Field|{*}|☰|Creates a paragraph selector to choose a set of data
+
 ## Tech Features
 
 <table style="text-align:center;">
@@ -21,20 +40,6 @@ A custom cover letter creator built on React, Node, and MongoDB alongside some o
     <td><sub><sup>🚧</sup></sub> Auto Save</td>
   </tr>
 </table>
-
-## Overview
-
-When writing templates, you can use the custom symbols below to insert interactive modules in the cover letter.
-
-Name | Text | Symbol | Comment
---- | --- | :---: | ---
-Input|{_}|_____|Creates an input field
-Selector|{.../.../...}|___ ↓|Allows you to select from any number of text
-Paragraph Data|{Title\|Paragraph Text}| |Fills paragraph data to be picked by a field
-Paragraph Field|{*}|☰|Creates a paragraph selector to choose a set of data
-
-Sample Video:
-
 
 ------------------------------------------
 
