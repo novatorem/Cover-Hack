@@ -27,9 +27,9 @@ A custom cover letter creator built on React, Node, and MongoDB alongside some o
 When writing templates, you can use the custom symbols below to insert interactive modules in the cover letter.
 
 Name | Text | Symbol | Comment
-:---: | :---: | :---: | ---
+--- | --- | :---: | ---
 Input|{_}|_____|Creates an input field
-Selector|{.../.../...}|__ ↓|Allows you to select from any number of text
+Selector|{.../.../...}|___ ↓|Allows you to select from any number of text
 Paragraph Data|{Title\|Paragraph Text}| |Fills paragraph data to be picked by a field
 Paragraph Field|{*}|☰|Creates a paragraph selector to choose a set of data
 
