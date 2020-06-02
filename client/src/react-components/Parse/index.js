@@ -2,6 +2,7 @@ import React from "react";
 
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import DoneIcon from "@material-ui/icons/Done";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
@@ -210,6 +211,7 @@ function getAll(sourceStr) {
 
 export default function Parse(props) {
   const data = getAll(props.data);
+  const [cIcon, setCIcon] = React.useState(<FileCopyIcon />);
 
   const showRaw = () => {
     let inRaw = 0;
@@ -267,8 +269,15 @@ export default function Parse(props) {
 
     console.log(rawList.join(""));
     navigator.clipboard.writeText(rawList.join(""));
+    setCIcon(<DoneIcon />);
+    setTimeout(function() {
+      setCIcon(<FileCopyIcon />);
+    }, 1250);
+    
   };
+    
 
+  
   return (
     <ThemeProvider theme={darkTheme}>
       <MUITypography align="left" style={{ whiteSpace: "pre-line" }}>
@@ -278,7 +287,7 @@ export default function Parse(props) {
         color="primary"
         onClick={showRaw}
         variant="contained"
-        startIcon={<FileCopyIcon />}
+        startIcon={cIcon}
       >
         Copy to clipboard
       </MUIButton>

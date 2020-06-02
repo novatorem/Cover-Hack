@@ -1,8 +1,13 @@
 import React from "react";
 import Particles from "react-particles-js";
 import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
+import CloseIcon from "@material-ui/icons/Close";
 import TextField from "@material-ui/core/TextField";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
 import BaseReactComponent from "./../BaseReactComponent";
+
 import {
   MuiThemeProvider,
   createMuiTheme,
@@ -35,6 +40,33 @@ const theme = createMuiTheme({
   palette: {
     type: "dark"
   }
+});
+
+const styles = theme => ({
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500]
+  }
+});
+
+const MUIDialogTitle = withStyles(styles)(props => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <DialogTitle disableTypography className={classes.root} {...other}>
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </DialogTitle>
+  );
 });
 
 class Login extends BaseReactComponent {
@@ -105,19 +137,16 @@ class Login extends BaseReactComponent {
             <Password />
 
             <div className="login__center">
-              <Button
-                className="login__button"
-                onClick={(this.handleOpen)}
-              >
+              <Button className="login__button" onClick={this.handleOpen}>
                 Try Me
+              </Button>
+              <Button className="login__button" onClick={register}>
+                Register
               </Button>
             </div>
             <div className="login__center">
               <Button className="login__button" onClick={login}>
                 Log In
-              </Button>
-              <Button className="login__button" onClick={register}>
-                Register
               </Button>
             </div>
           </div>
@@ -127,19 +156,11 @@ class Login extends BaseReactComponent {
             open={this.state.trying}
             onClose={this.handleClose}
           >
-            <DialogTitle>Try Me</DialogTitle>
+            <MUIDialogTitle onClose={this.handleClose}>Try Me</MUIDialogTitle>
+            <Divider />
             <MUIDialogContent dividers={false}>
               <Page cover={tryCover} />
             </MUIDialogContent>
-            <DialogActions>
-              <Button
-                variant="outlined"
-                onClick={this.handleClose}
-                color="default"
-              >
-                Close
-              </Button>
-            </DialogActions>
           </Dialog>
 
           {/* Snackbars for notifications */}

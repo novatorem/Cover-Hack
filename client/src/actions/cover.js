@@ -4,24 +4,17 @@ import { getState, setState } from "statezero";
 
 export const newCover = title => {
   const url = "/covers/new";
-
-  //Early error detection
-  if ((title.length > 12) ^ (title.length < 1)) {
-    setState("coverShort", true);
-    setTimeout(function() {
-      setState("coverShort", false);
-    }, 3250);
-    return;
-  }
+  
+  let userCover = JSON.stringify({
+      owner: getState("userID"),
+      title: title,
+      data: ""
+    })
 
   // Create our request constructor with all the parameters we need
   const request = new Request(url, {
     method: "post",
-    body: JSON.stringify({
-      owner: getState("userID"),
-      title: title,
-      data: ""
-    }),
+    body: userCover,
     headers: {
       Accept: "application/json, text/plain, */*",
       "Content-Type": "application/json"
@@ -37,6 +30,9 @@ export const newCover = title => {
           setState("coverSuccess", false);
         }, 3250);
         getUserCovers();
+        
+        setState("cover", userCover);
+        
         return res.json();
       }
     })
