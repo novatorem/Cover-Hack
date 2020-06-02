@@ -54,4 +54,28 @@ If you have any questions, comments, or issues, please open a story on github.
 {Sample Paragraph|Lorem Ipsum and so on}
 {Another one|What's the rest of Lorem Ipsum?}`
   );
+
+  setState("tryCover", {
+    data: `Hello, and welcome to Cover Hack! The way this web-app works is by requiring you, the user, to first provide the "markdown".
+
+You'll notice that the left side is the "hack" where you provide the raw text. On the right side, the "true", version appears. The hacked together cover letter then provides the fields for you to work with.
+
+For a quick guide, you can create input forms with {_}.
+
+Selectors can be created with {this/that/or anything else}.
+
+To create paragraph selectors, use:
+
+{*}
+
+But to create paragraphs themselves, you can set them up like the end of this text.
+They're then hidden and accessible only from the paragraph selector!
+
+Treat this as you would markdown, then edit the final version and copy it to your clipboard.
+
+If you have any questions, comments, or issues, please open a story on GitHub.
+
+{Sample Paragraph|Lorem Ipsum and so on}
+{Another one|What's the rest of Lorem Ipsum?}`
+  });
 };

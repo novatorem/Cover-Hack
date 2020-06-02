@@ -11,6 +11,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
+import { setState, getState } from "statezero";
 import { newCover } from "../../actions/cover";
 
 import "./styles.css";
@@ -84,8 +85,18 @@ export default function NewCover() {
   };
 
   const handleCreate = () => {
-    newCover(name);
     setOpen(false);
+    console.log(open);
+
+    //Early error detection
+    if ((name.length > 12) ^ (name.length < 1)) {
+      setState("coverShort", true);
+      setTimeout(function() {
+        setState("coverShort", false);
+      }, 3250);
+    } else {
+      newCover(name);
+    }
   };
 
   return (
@@ -136,13 +147,19 @@ export default function NewCover() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="secondary" fullWidth="true">
+            <Button
+              onClick={handleClose}
+              color="secondary"
+              fullWidth="true"
+              variant="outlined"
+            >
               Cancel
             </Button>
             <Button
               onClick={handleCreate}
               color="primary"
               fullWidth="true"
+              variant="outlined"
             >
               Create
             </Button>

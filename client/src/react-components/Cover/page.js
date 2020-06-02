@@ -99,7 +99,7 @@ export default function Page(props) {
       <MUIGrid container alignItems="stretch" spacing={2} direction={direction}>
         {visibility ? (
           <MUIGrid item xs>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} elevation={0}>
               <MUIHeader variant="h6" noWrap>
                 Hack
               </MUIHeader>
@@ -119,7 +119,7 @@ export default function Page(props) {
           true
         )}
         <MUIGrid item xs>
-          <Paper className={classes.paper}>
+          <Paper className={classes.paper} elevation={0}>
             <MUIHeader variant="h6" noWrap>
               True
             </MUIHeader>
