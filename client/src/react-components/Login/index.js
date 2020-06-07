@@ -32,7 +32,8 @@ import "./../../App.css";
 
 const MUIDialogContent = withStyles(theme => ({
   root: {
-    overflow: "hidden"
+    overflow: "scroll",
+    scrollbarWidth: "none"
   }
 }))(DialogContent);
 
