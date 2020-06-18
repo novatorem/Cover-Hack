@@ -31,6 +31,8 @@ export const updateLoginForm = field => {
 };
 
 export const login = () => {
+  setState("loginClick", true);
+
   // Create our request constructor with all the parameters we need
   const request = new Request("/users/login", {
     method: "post",
@@ -50,6 +52,8 @@ export const login = () => {
         setTimeout(function() {
           setState("failedLogin", false);
         }, 3250);
+
+        setState("loginClick", false);
       }
     })
     .then(json => {
@@ -57,9 +61,19 @@ export const login = () => {
         setState("userID", json.userID);
         setState("currentUser", json.currentUser);
         getUserCovers();
+        
+        setState("loginClick", false);
       }
     })
     .catch(error => {
+      if (getState("failedLogin") !== true) {
+        setState("loginError", true);
+        setTimeout(function() {
+          setState("loginError", false);
+        }, 3250);
+      }
+
+      setState("loginClick", false);
       console.log(error);
     });
 };
