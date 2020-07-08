@@ -274,7 +274,7 @@ export default function Parse(props) {
     console.log(rawList)
 
     console.log(rawList.join(""));
-    navigator.clipboard.writeText(rawList.join(""));
+    navigator.clipboard.writeText(rawList.join("").trim());
     setCIcon(<DoneIcon />);
     setTimeout(function() {
       setCIcon(<FileCopyIcon />);
