@@ -14,6 +14,8 @@ export const setEmptyState = () => {
   setState("userID", null);
 
   // Snackbar login resources
+  setState("loginClick", false);
+  setState("loginError", false);
   setState("loginFailed", false);
   setState("registered", false);
   setState("passwordShort", false);

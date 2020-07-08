@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import BaseReactComponent from "./../BaseReactComponent";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 import {
   MuiThemeProvider,
@@ -15,9 +16,9 @@ import {
 } from "@material-ui/core/styles";
 
 import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
 
 // Importing actions/required methods
 
@@ -32,9 +33,16 @@ import "./../../App.css";
 
 const MUIDialogContent = withStyles(theme => ({
   root: {
-    overflow: "hidden"
+    overflow: "scroll",
+    scrollbarWidth: "none"
   }
 }))(DialogContent);
+
+const MUILinearProgress = withStyles(theme => ({
+  root: {
+    margin: "2rem"
+  }
+}))(LinearProgress);
 
 const theme = createMuiTheme({
   palette: {
@@ -72,6 +80,8 @@ const MUIDialogTitle = withStyles(styles)(props => {
 class Login extends BaseReactComponent {
   // Prepare all the snackbars
   filterState({
+    loginClick,
+    loginError,
     failedLogin,
     invalidUsername,
     passwordShort,
@@ -79,6 +89,8 @@ class Login extends BaseReactComponent {
     tryCover
   }) {
     return {
+      loginClick,
+      loginError,
       failedLogin,
       invalidUsername,
       passwordShort,
@@ -102,6 +114,8 @@ class Login extends BaseReactComponent {
 
   render() {
     const {
+      loginClick,
+      loginError,
       failedLogin,
       invalidUsername,
       passwordShort,
@@ -163,7 +177,15 @@ class Login extends BaseReactComponent {
             </MUIDialogContent>
           </Dialog>
 
+          {loginClick === true && <MUILinearProgress />}
+
           {/* Snackbars for notifications */}
+          {loginError === true && (
+            <Snackbar
+              severity="error"
+              message="Error logging in, please refresh. If this continues, post an issue on github."
+            />
+          )}
           {failedLogin === true && (
             <Snackbar
               severity="error"

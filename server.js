@@ -9,7 +9,6 @@ const app = express();
 const { mongoose } = require("./db/mongoose");
 
 // import the mongoose models
-const { Student } = require("./models/student");
 const { User } = require("./models/user");
 const { Cover } = require("./models/cover");
 

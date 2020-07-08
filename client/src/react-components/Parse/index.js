@@ -266,9 +266,15 @@ export default function Parse(props) {
         slRaw++;
       }
     });
+    
+    console.log(rawList)
+    while (rawList[rawList.length - 1] === "") {
+      rawList.pop();
+    }
+    console.log(rawList)
 
     console.log(rawList.join(""));
-    navigator.clipboard.writeText(rawList.join(""));
+    navigator.clipboard.writeText(rawList.join("").trim());
     setCIcon(<DoneIcon />);
     setTimeout(function() {
       setCIcon(<FileCopyIcon />);
