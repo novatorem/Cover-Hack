@@ -10,7 +10,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
-import { updateLoginForm, login } from "../../actions/user";
+import { updateLoginForm, login, register } from "../../actions/user";
 
 import "./styles.css";
 import "./../../App.css";
@@ -75,8 +75,7 @@ const theme = createMuiTheme({
   }
 });
 
-export default function InputAdornments() {
-
+export default function InputAdornments(props) {
   const classes = useStyles();
   const [values, setValues] = React.useState({
     password: "",
@@ -118,7 +117,11 @@ export default function InputAdornments() {
             onChange={handleChange("password")}
             onKeyDown={e => {
               if (e.keyCode === 13) {
-                login();
+                if (props.login) {
+                  login();
+                } else {
+                  register();
+                }
               }
             }}
             endAdornment={

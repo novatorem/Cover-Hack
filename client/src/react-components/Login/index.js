@@ -1,5 +1,5 @@
 import React from "react";
-import Particles from "react-particles-js";
+import { useEffect, useMemo, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import CloseIcon from "@material-ui/icons/Close";
@@ -101,7 +101,7 @@ class Login extends BaseReactComponent {
   constructor(props) {
     super(props);
 
-    this.state = { trying: false };
+    this.state = { trying: false, switch: true };
     this.handleOpen = e => {
       e.preventDefault();
       this.setState({ trying: true });
@@ -125,46 +125,109 @@ class Login extends BaseReactComponent {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="login__bg-image center">
-          <Particles />
-          <div className="login__card center">
-            <h2 id="login__h2">Cover Hack</h2>
-
-            <TextField
-              name="username"
-              label="Username"
-              className="login__input app__input app__horizontal-center"
-              margin="normal"
-              autoFocus="true"
-              InputProps={{
-                style: {
-                  color: "#FFFFFFDE"
-                }
-              }}
-              onChange={e => updateLoginForm(e.target)}
-              onKeyDown={e => {
-                if (e.keyCode === 13) {
-                  login();
-                }
-              }}
-            />
-
-            <Password />
-
-            <div className="login__center">
-              <Button className="login__button" onClick={this.handleOpen}>
-                Try Me
-              </Button>
-              <Button className="login__button" onClick={register}>
-                Register
-              </Button>
+          <div
+            className={`container center ${
+              this.state.switch ? "right-panel-active" : null
+            }`}
+          >
+            <div className="container__form container--signup">
+              <form action="#" class="form center" id="form1">
+                <h2 className="form__title">Sign Up</h2>
+                <TextField
+                  name="username"
+                  label="Username"
+                  className="login__input app__input app__horizontal-center"
+                  margin="normal"
+                  autoFocus="true"
+                  InputProps={{
+                    style: {
+                      color: "#FFFFFFDE"
+                    }
+                  }}
+                  onChange={e => updateLoginForm(e.target)}
+                  onKeyDown={e => {
+                    if (e.keyCode === 13) {
+                      register();
+                    }
+                  }}
+                />
+                <Password login={false} />
+                <Button className="login__button" onClick={register}>
+                  Register
+                </Button>
+                <Button className="login__button" onClick={this.handleOpen}>
+                  Try Me
+                </Button>
+              </form>
             </div>
-            <div className="login__center">
-              <Button className="login__button" onClick={login}>
-                Log In
-              </Button>
+
+            <div className="container__form container--signin">
+              <form action="#" class="form center" id="form2">
+                <h2 className="form__title">Sign In</h2>
+                <TextField
+                  name="username"
+                  label="Username"
+                  className="login__input app__input app__horizontal-center"
+                  margin="normal"
+                  autoFocus="true"
+                  InputProps={{
+                    style: {
+                      color: "#FFFFFFDE"
+                    }
+                  }}
+                  onChange={e => updateLoginForm(e.target)}
+                  onKeyDown={e => {
+                    if (e.keyCode === 13) {
+                      login();
+                    }
+                  }}
+                />
+                <Password login={true} />
+
+                <Button className="login__button" onClick={login}>
+                  Log In
+                </Button>
+                <Button
+                  className="login__button"
+                  onClick={() =>
+                    window.open(
+                      "https://github.com/novatorem/Cover-Hack",
+                      "_blank"
+                    )
+                  }
+                >
+                  Info
+                </Button>
+              </form>
+            </div>
+
+            <div className="container__overlay">
+              <div className="overlay">
+                <div className="overlay__panel overlay--left">
+                  <button
+                    className="btn"
+                    id="signIn"
+                    onClick={() =>
+                      this.setState({ switch: !this.state.switch })
+                    }
+                  >
+                    Sign In
+                  </button>
+                </div>
+                <div className="overlay__panel overlay--right">
+                  <button
+                    className="btn"
+                    id="signUp"
+                    onClick={() =>
+                      this.setState({ switch: !this.state.switch })
+                    }
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-
           <Dialog
             maxWidth={false}
             open={this.state.trying}

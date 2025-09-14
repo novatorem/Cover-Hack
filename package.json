@@ -1,6 +1,6 @@
 {
     "name": "CHServer",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "",
     "main": "server.js",
     "scripts": {
@@ -13,14 +13,13 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "axios": "^0.19.2",
+        "axios": "^1.11.0",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.18.3",
         "express": "^4.16.4",
         "express-session": "^1.15.6",
         "mongodb": "^3.1.13",
-        "mongoose": "^5.4.19",
-        "react-https-redirect": "^1.1.0",
-        "react-native": "^0.62.2"
+        "mongoose": "^8.18.1",
+        "react-https-redirect": "^1.1.0"
     }
 }

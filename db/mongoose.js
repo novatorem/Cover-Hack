@@ -15,7 +15,4 @@ mongoose.connect(
 	console.log('ERROR:', err.message);
 });
 
-// Due to deprecation warning
-mongoose.set('useFindAndModify', false);
-
 module.exports = { mongoose }  // Export the active connection.

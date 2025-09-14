@@ -25,3 +25,9 @@ pubspec.lock
 
 .yarn
 shrinkwrap.yaml
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test

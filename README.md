@@ -160,4 +160,10 @@ MONGODB_URI='<connection-string>'
 PORT='3000'
 ```
 
-When installing modules in glitch, use `pnpm install` instead of `npm`, as it would avoid using up the set amount of disk space.
+When installing modules in glitch, use `pnpm install` instead of `npm`, as it would avoid using up the set amount of disk space.  
+To use, begin by enabling pnpm through: `enable-pnpm`.
+
+Then, the full command to execute is:
+```
+pnpm install && cd client && pnpm install && pnpm run build
+```

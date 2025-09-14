@@ -159,7 +159,7 @@ export default function NewCover() {
               onClick={handleCreate}
               color="primary"
               fullWidth="true"
-              variant="outlined"
+              variant="contained"
             >
               Create
             </Button>
